@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Intervalado</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        .fundo {
+            background-color: rgb(175, 27, 27);
+            height: 100vh;
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            position: relative;
+        }
+
+        .subfundo{
+            background-image: url(Blog_do_treinador2.jpg);
+            height: 16%;
+            background-repeat: no-repeat;
+            background-position: center;
+            background-size: cover;
+        }
+
+        .conteudo {
+            position: absolute;
+            top: 62%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: white;
+            text-align: center;
+            font-family: Arial, sans-serif;
+        }
+
+        .formulario {
+            background-color: rgba(0, 0, 0, 0.5);
+            padding: 20px;
+            border-radius: 10px;
+           
+        }
+
+        input[type="number"],
+        input[type="submit"] {
+            width: 100%;
+            padding: 8px;
+            margin-top: 8px;
+            margin-bottom: 8px;
+            border: none;
+            border-radius: 5px;
+            background-color: #f0f0f0;
+            font-size: 16px;
+            box-sizing: border-box;
+        }
+
+        input[type="submit"] {
+            background-color: #4caf50;
+            color: white;
+            cursor: pointer;
+        }
+
+        input[type="submit"]:disabled {
+            background-color: gray;
+            cursor: not-allowed;
+        }
+
+        #tempoResultado,
+        .resultado {
+            margin-top: 20px;
+        }
+        h2 {
+            margin-bottom: 20px; /* Espaçamento entre C. Constante e o próximo elemento */
+            font-size: xx-large;
+        }
+        body{
+            background-color: rgb(175, 27, 27);
+        }
+
+        table {
+            margin-top: 50px;
+            margin-left: auto;
+            margin-right: auto;
+            border-collapse: collapse;
+            width: 80%;
+        }
+
+        th,
+        td {
+            border: 1px solid white;
+            padding: 8px;
+            text-align: center;
+        }
+
+        th {
+            background-color: rgba(0, 0, 0, 0.5);
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <div class="fundo">
+        <div class="subfundo">
+            <div class="conteudo">
+                
+                <h2>Intervalado</h2>
+                <form id="formulario" class="formulario">
+                    
+                    <label for="VAM">VAM do atleta em Km/h:</label><br>
+                    <input type="number" id="VAM" name="VAM" min="0" required><br><br>
+
+                    <label for="serie">Número de séries:</label><br>
+                    <input type="number" id="serie" name="serie" min="0" required><br><br>
+
+                    <label for="descanso_serie">Tempo de descanso da série em s:</label><br>
+                    <input type="number" id="descanso_serie" name="descanso_serie" min="0" required><br><br>
+
+                    <label for="repeticao">Número de repetições:</label><br>
+                    <input type="number" id="repeticao" name="repeticao" min="0" required><br><br>
+                    
+                    <label for="descanso_repeticao">Tempo de descanso da repetição em s:</label><br>
+                    <input type="number" id="descanso_repeticao" name="descanso_repeticao" min="0" required><br><br>
+
+                    <label for="distancia_aquecimento">Distância do aquecimento em Km:</label><br>
+                    <input type="number" id="distancia_aquecimento" name="distancia_aquecimento" min="0" required><br><br>
+
+                    <label for="VAM_aquecimento">Percentual VAM aquecimento:</label><br>
+                    <input type="number" id="VAM_aquecimento" name="VAM_aquecimento" min="0" max="200" required><br><br>
+
+                    <label for="distancia_rampa">Distância do intervalado em m:</label><br>
+                    <input type="number" id="distancia_rampa" name="distancia_rampa" min="0" required><br><br>
+
+                    <label for="VAM_subida">Percentual VAM intervalado:</label><br>
+                    <input type="number" id="VAM_subida" name="VAM_subida" min="0" max="200" required><br><br>
+
+                    <label for="distancia_resfriamento">Distância do resfriamento:</label><br>
+                    <input type="number" id="distancia_resfriamento" name="distancia_resfriamento" min="0" required><br><br>
+
+                    <label for="VAM_resfriamento">Percentual VAM resfriamento:</label><br>
+                    <input type="number" id="VAM_resfriamento" name="VAM_resfriamento" min="0" max="200" required><br><br>
+                    
+                    <input type="submit" value="Calcular" disabled>
+                </form>
+
+                <!-- Tabela para exibir os resultados -->
+                <table id="resultadoTable" style="display: none;">
+                    <tr>
+                        <th rowspan="2">Aquecimento</th>
+                        <th>Pace</th>
+                        <th>Velocidade</th>
+                        <th>Tempo</th>
+                    </tr>
+                    <tr>
+                        <td id="paceFormatado_aquecimento" class="resultado"></td>
+                        <td id="velocidade_aquecimento" class="resultado"></td>
+                        <td id="tempoFormatado_aquecimento" class="resultado"></td>
+                    </tr>
+                </table>
+                <table id="resultadoTable1" style="display: none;">
+                    <tr>
+                        <th>Série</th>
+                        <th>Descanso Série</th>
+                        <th>Repetições</th>
+                        <th>Tipo</th>
+                        <th>Pace</th>
+                        <th>Velocidade</th>
+                        <th>Tempo</th>
+                    </tr>
+                    <tr>
+                        <td class="resultado serie-value" rowspan="3"></td>
+                        <td class="resultado descanso-serie-value" rowspan="3"></td>
+                        <td class="resultado repeticao-value" rowspan="3"></td>
+                        <td>Subida</td>
+                        <td id="paceFormatado_subida" class="resultado"></td>
+                        <td id="velocidade_subida" class="resultado"></td>
+                        <td id="tempoFormatado_subida" class="resultado"></td>
+                    </tr>
+                    <tr>
+                        <td>Descanso</td>
+                        <td>00:00</td>
+                        <td>0.00 Km/h</td>
+                        <td class="resultado descanso-repeticao-value"></td>
+                    </tr>
+                </table>
+                <table id="resultadoTable2" style="display: none;">
+                    <tr>
+                        <th rowspan="2">Resfriamento</th>
+                        <th>Pace</th>
+                        <th>Velocidade</th>
+                        <th>Tempo</th>
+                    </tr>
+                    <tr>
+                        <td id="paceFormatado_resfriamento" class="resultado"></td>
+                        <td id="velocidade_resfriamento" class="resultado"></td>
+                        <td id="tempoFormatado_resfriamento" class="resultado"></td>
+                    </tr>
+                </table>
+                <table id="resultadoTable3" style="display: none;">
+                    <tr>
+                    <th>Distância total</th>
+                    <th>Tempo total</th>
+                    </tr>
+                    <tr>
+                    <td class="resultado distancia-total-value"></td>
+                    <td class="resultado tempo-total-value"></td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('formulario').addEventListener('input', function() {
+            var vam = document.getElementById('VAM').value;
+            var serie = document.getElementById('serie').value;
+            var descanso_serie = document.getElementById('descanso_serie').value;
+            var repeticao = document.getElementById('repeticao').value;
+            var descanso_repeticao = document.getElementById('descanso_repeticao').value;
+            var distancia_aquecimento = document.getElementById('distancia_aquecimento').value;
+            var vam_aquecimento = document.getElementById('VAM_aquecimento').value;
+            var distancia_rampa = document.getElementById('distancia_rampa').value;
+            var vam_subida = document.getElementById('VAM_subida').value;
+            var distancia_resfriamento = document.getElementById('distancia_resfriamento').value;
+            var vam_resfriamento = document.getElementById('VAM_resfriamento').value;
+
+            if (vam !== '' && serie !== '' && descanso_serie !== '' && repeticao !== '' && distancia_aquecimento !== '' && descanso_repeticao !== '' && vam_aquecimento !== '' && distancia_rampa !== '' && vam_subida !== '' && distancia_resfriamento !== '' && vam_resfriamento !== '') {
+                document.querySelector('input[type="submit"]').disabled = false;
+            } else {
+                document.querySelector('input[type="submit"]').disabled = true;
+            }
+        });
+
+        document.getElementById('formulario').addEventListener('submit', function(event) {
+            event.preventDefault(); // Impede o envio do formulário
+
+            var vam = parseFloat(document.getElementById('VAM').value);
+            var serie = parseFloat(document.getElementById('serie').value);
+            var descanso_serie = parseFloat(document.getElementById('descanso_serie').value);
+            var repeticao = parseFloat(document.getElementById('repeticao').value);
+            var descanso_repeticao = parseFloat(document.getElementById('descanso_repeticao').value);
+            var distancia_aquecimento = parseFloat(document.getElementById('distancia_aquecimento').value);
+            var vam_aquecimento = parseFloat(document.getElementById('VAM_aquecimento').value);
+            var distancia_rampa = parseFloat(document.getElementById('distancia_rampa').value);
+            var vam_subida = parseFloat(document.getElementById('VAM_subida').value);
+            var distancia_resfriamento = parseFloat(document.getElementById('distancia_resfriamento').value);
+            var vam_resfriamento = parseFloat(document.getElementById('VAM_resfriamento').value);
+
+            if (!isNaN(vam) && !isNaN(serie) && !isNaN(descanso_serie) && !isNaN(repeticao) && !isNaN(descanso_repeticao) && !isNaN(distancia_aquecimento) && !isNaN(vam_aquecimento) && !isNaN(distancia_rampa) && !isNaN(vam_subida) && !isNaN(distancia_resfriamento) && !isNaN(vam_resfriamento)) {
+                calcularResultados(vam, serie, descanso_serie, repeticao, descanso_repeticao, distancia_aquecimento, vam_aquecimento, distancia_rampa, vam_subida, distancia_resfriamento, vam_resfriamento);
+            } else {
+                alert('Por favor, preencha todos os campos corretamente.');
+            }
+        });
+
+        function calcularResultados(vam, serie, descanso_serie, repeticao, descanso_repeticao, distancia_aquecimento, vam_aquecimento, distancia_rampa, vam_subida, distancia_resfriamento, vam_resfriamento) {
+        document.getElementById('formulario').style.display = 'none';
+  
+            var distancia_subida = distancia_rampa / 1000;
+
+            var velocidade_aquecimento = vam * (vam_aquecimento / 100);
+            var velocidade_subida = vam * (vam_subida / 100);
+            var velocidade_resfriamento = vam * (vam_resfriamento / 100);
+
+            var tempo_aquecimento = distancia_aquecimento / velocidade_aquecimento;
+            var tempo_subida = distancia_subida / velocidade_subida;
+            var tempo_resfriamento = distancia_resfriamento / velocidade_resfriamento;
+
+            var tempoHoras_aquecimento = Math.floor(tempo_aquecimento);
+            var tempoMinutos_aquecimento = Math.floor((tempo_aquecimento - tempoHoras_aquecimento) * 60);
+            var tempoSegundos_aquecimento = Math.floor((tempo_aquecimento - tempoHoras_aquecimento) * 3600 - tempoMinutos_aquecimento * 60);
+            var tempoFormatado_aquecimento = ('0' + tempoHoras_aquecimento).slice(-2) + ':' + ('0' + tempoMinutos_aquecimento).slice(-2) + ':' + ('0' + tempoSegundos_aquecimento).slice(-2);
+
+            var tempoHoras_subida = Math.floor(tempo_subida);
+            var tempoMinutos_subida = Math.floor((tempo_subida - tempoHoras_subida) * 60);
+            var tempoSegundos_subida = Math.floor((tempo_subida - tempoHoras_subida) * 3600 - tempoMinutos_subida * 60);
+            var tempoFormatado_subida = ('0' + tempoHoras_subida).slice(-2) + ':' + ('0' + tempoMinutos_subida).slice(-2) + ':' + ('0' + tempoSegundos_subida).slice(-2);
+
+            var tempoHoras_resfriamento = Math.floor(tempo_resfriamento);
+            var tempoMinutos_resfriamento = Math.floor((tempo_resfriamento - tempoHoras_resfriamento) * 60);
+            var tempoSegundos_resfriamento = Math.floor((tempo_resfriamento - tempoHoras_resfriamento) * 3600 - tempoMinutos_resfriamento * 60);
+            var tempoFormatado_resfriamento = ('0' + tempoHoras_resfriamento).slice(-2) + ':' + ('0' + tempoMinutos_resfriamento).slice(-2) + ':' + ('0' + tempoSegundos_resfriamento).slice(-2);
+
+            var pace_aquecimento = 3600 / velocidade_aquecimento;
+            var paceMinutos_aquecimento = Math.floor(pace_aquecimento / 60);
+            var paceSegundos_aquecimento = Math.floor(pace_aquecimento % 60);
+            var paceFormatado_aquecimento = ('0' + paceMinutos_aquecimento).slice(-2) + ':' + ('0' + paceSegundos_aquecimento).slice(-2);
+
+            var pace_subida = 3600 / velocidade_subida;
+            var paceMinutos_subida = Math.floor(pace_subida / 60);
+            var paceSegundos_subida = Math.floor(pace_subida % 60);
+            var paceFormatado_subida = ('0' + paceMinutos_subida).slice(-2) + ':' + ('0' + paceSegundos_subida).slice(-2);
+
+            var pace_resfriamento = 3600 / velocidade_resfriamento;
+            var paceMinutos_resfriamento = Math.floor(pace_resfriamento / 60);
+            var paceSegundos_resfriamento = Math.floor(pace_resfriamento % 60);
+            var paceFormatado_resfriamento = ('0' + paceMinutos_resfriamento).slice(-2) + ':' + ('0' + paceSegundos_resfriamento).slice(-2);
+           
+            var descanso_repeticao_ajustado = descanso_repeticao/3600
+            var descanso_repeticao_horas = Math.floor(descanso_repeticao_ajustado);
+            var descanso_repeticao_minutos = Math.floor((descanso_repeticao_ajustado - descanso_repeticao_horas) * 60);
+            var descanso_repeticao_segundos = Math.floor((descanso_repeticao_ajustado - descanso_repeticao_horas) * 3600 - descanso_repeticao_minutos * 60);
+            var descanso_repeticao_formado = ('0' + descanso_repeticao_horas).slice(-2) + ':' + ('0' + descanso_repeticao_minutos).slice(-2) + ':' + ('0' + descanso_repeticao_segundos).slice(-2);
+
+            var descanso_serie_ajustado = descanso_serie/3600
+            var descanso_serie_horas = Math.floor(descanso_serie_ajustado);
+            var descanso_serie_minutos = Math.floor((descanso_serie_ajustado - descanso_serie_horas) * 60);
+            var descanso_serie_segundos = Math.floor((descanso_serie_ajustado - descanso_serie_horas) * 3600 - descanso_serie_minutos * 60);
+            var descanso_serie_formado = ('0' + descanso_serie_horas).slice(-2) + ':' + ('0' + descanso_serie_minutos).slice(-2) + ':' + ('0' + descanso_serie_segundos).slice(-2);
+
+            var distancia_total = (distancia_aquecimento + (((distancia_subida) * repeticao)*serie) + distancia_resfriamento).toFixed(2) + ' Km';
+            var tempo_total_emsegundos = (descanso_serie * (serie - 1)) + (descanso_repeticao * repeticao*serie) + (tempo_aquecimento*3600) + (tempo_resfriamento*3600) + (tempo_subida*3600*repeticao*serie);
+
+            var tempo_total_ajustado = tempo_total_emsegundos/3600
+            var tempo_total_horas = Math.floor(tempo_total_ajustado);
+            var tempo_total_minutos = Math.floor((tempo_total_ajustado - tempo_total_horas) * 60);
+            var tempo_total_segundos = Math.floor((tempo_total_ajustado - tempo_total_horas) * 3600 - tempo_total_minutos * 60);
+            var tempo_total_formado = ('0' + tempo_total_horas).slice(-2) + ':' + ('0' + tempo_total_minutos).slice(-2) + ':' + ('0' + tempo_total_segundos).slice(-2);
+
+
+            document.getElementById('resultadoTable').style.display = 'block';
+            document.getElementById('resultadoTable1').style.display = 'block';
+            document.getElementById('resultadoTable2').style.display = 'block';
+            document.getElementById('resultadoTable3').style.display = 'block';
+
+            document.getElementById('paceFormatado_aquecimento').textContent = paceFormatado_aquecimento;
+            document.getElementById('velocidade_aquecimento').textContent = velocidade_aquecimento.toFixed(2) + ' Km/h';
+            document.getElementById('tempoFormatado_aquecimento').textContent = tempoFormatado_aquecimento;
+
+            document.getElementById('paceFormatado_subida').textContent = paceFormatado_subida;
+            document.getElementById('velocidade_subida').textContent = velocidade_subida.toFixed(2) + ' Km/h';
+            document.getElementById('tempoFormatado_subida').textContent = tempoFormatado_subida;
+
+            document.getElementById('paceFormatado_resfriamento').textContent = paceFormatado_resfriamento;
+            document.getElementById('velocidade_resfriamento').textContent = velocidade_resfriamento.toFixed(2) + ' Km/h';
+            document.getElementById('tempoFormatado_resfriamento').textContent = tempoFormatado_resfriamento;
+
+            document.querySelectorAll('.serie-value').forEach(function(element) {
+            element.textContent = serie;
+            });
+
+            document.querySelectorAll('.repeticao-value').forEach(function(element) {
+    element.textContent = repeticao;
+});
+
+            document.querySelectorAll('.descanso-repeticao-value').forEach(function(element) {
+            element.textContent = descanso_repeticao_formado;
+            
+            });
+            document.querySelectorAll('.descanso-serie-value').forEach(function(element) {
+            element.textContent = descanso_serie_formado;
+            
+            });
+            document.querySelectorAll('.tempo-total-value').forEach(function(element) {
+            element.textContent = tempo_total_formado;
+            
+            });
+            document.querySelectorAll('.distancia-total-value').forEach(function(element) {
+            element.textContent = distancia_total;
+            
+            });
+            
+        }
+    </script>
+</body>
+</html>

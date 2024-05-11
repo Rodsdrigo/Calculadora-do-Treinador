@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Continuo Crescente</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        .fundo {
+            background-color: rgb(175, 27, 27);
+            height: 100vh;
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            position: relative;
+        }
+
+        .subfundo{
+            background-image: url(Blog_do_treinador2.jpg);
+            height: 16%;
+            background-repeat: no-repeat;
+            background-position: center;
+            background-size: cover;
+        }
+
+        .conteudo {
+            position: absolute;
+            top: 62%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: white;
+            text-align: center;
+            font-family: Arial, sans-serif;
+        }
+
+        .formulario {
+            background-color: rgba(0, 0, 0, 0.5);
+            padding: 20px;
+            border-radius: 10px;
+           
+        }
+
+        input[type="number"],
+        input[type="submit"] {
+            width: 100%;
+            padding: 8px;
+            margin-top: 8px;
+            margin-bottom: 8px;
+            border: none;
+            border-radius: 5px;
+            background-color: #f0f0f0;
+            font-size: 16px;
+            box-sizing: border-box;
+        }
+
+        input[type="submit"] {
+            background-color: #4caf50;
+            color: white;
+            cursor: pointer;
+        }
+
+        input[type="submit"]:disabled {
+            background-color: gray;
+            cursor: not-allowed;
+        }
+
+        #tempoResultado,
+        .resultado {
+            margin-top: 20px;
+            
+
+        }
+        h2 {
+            margin-bottom: 20px; /* Espaçamento entre C. Constante e o próximo elemento */
+            font-size: xx-large;
+        }
+        body{
+            background-color: rgb(175, 27, 27);
+        }
+
+        table {
+            margin-top: 50px;
+            margin-left: auto;
+            margin-right: auto;
+            border-collapse: collapse;
+            width: 80%;
+        }
+
+        th,
+        td {
+            border: 1px solid white;
+            padding: 8px;
+            text-align: center;
+            
+        }
+
+        th {
+            background-color: rgba(0, 0, 0, 0.5);
+            color: white;
+        }
+        
+
+        
+    </style>
+</head>
+<body>
+    <div class="fundo">
+        <div class="subfundo">
+            <div class="conteudo">
+                
+                <h2>Contínuo Crescente</h2>
+                <form id="formulario" class="formulario">
+                    
+                    <label for="VAM">VAM do atleta em Km/h:</label><br>
+                    <input type="number" id="VAM" name="VAM" min="0" required><br><br>
+
+                    <label for="distancia1">Distância intensidade 1 em Km:</label><br>
+                    <input type="number" id="distancia1" name="distancia1" min="0" required><br><br>
+
+                    <label for="%VAM1">Percentual da VAM intensidade 1:</label><br>
+                    <input type="number" id="%VAM1" name="%VAM1" min="0" max="100" required><br><br>
+
+                    <label for="distancia2">Distância intensidade 2 em Km:</label><br>
+                    <input type="number" id="distancia2" name="distancia2" min="0" required><br><br>
+                    
+                    <label for="%VAM2">Percentual da VAM intensidade 2:</label><br>
+                    <input type="number" id="%VAM2" name="%VAM2" min="0" max="100" required><br><br>
+
+                    <label for="distancia3">Distância intensidade 3 em Km:</label><br>
+                    <input type="number" id="distancia3" name="distancia3" min="0" required><br><br>
+
+                    <label for="%VAM3">Percentual da VAM intensidade 3:</label><br>
+                    <input type="number" id="%VAM3" name="%VAM3" min="0" max="100" required><br><br>
+                    
+                    <input type="submit" value="Calcular" disabled>
+                </form>
+
+                <!-- Tabela para exibir os resultados -->
+                <table id="resultadoTable" style="display: none;">
+                    <tr>
+                        <th>Intencidade</th>
+                        <th>Pace</th>
+                        <th>Velocidade</th>
+                        <th>Tempo</th>
+                        <th>Tempo total</th>
+                    </tr>
+                    <tr>
+                        <td>Intensidade 1</td>
+                        <td id="paceResultado1" class="resultado"></td>
+                        <td id="velocidadeResultado1" class="resultado"></td>
+                        <td id="tempoResultado1" class="resultado"></td>
+                        <td rowspan="3" id="tempoResultado" class="resultado"></td>
+                    </tr>
+                    <tr>
+                        <td>Intensidade 2</td>
+                        <td id="paceResultado2" class="resultado"></td>
+                        <td id="velocidadeResultado2" class="resultado"></td>
+                        <td id="tempoResultado2" class="resultado"></td>
+                    </tr>
+                    <tr>
+                        <td>Intensidade 3</td>
+                        <td id="paceResultado3" class="resultado"></td>
+                        <td id="velocidadeResultado3" class="resultado"></td>
+                        <td id="tempoResultado3" class="resultado"></td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('formulario').addEventListener('input', function() {
+            var vam = document.getElementById('VAM').value;
+            var distancia1 = document.getElementById('distancia1').value;
+            var distancia2 = document.getElementById('distancia2').value;
+            var distancia3 = document.getElementById('distancia3').value;
+            var percentualVAM1 = document.getElementById('%VAM1').value;
+            var percentualVAM2 = document.getElementById('%VAM2').value;
+            var percentualVAM3 = document.getElementById('%VAM3').value;
+
+            if (vam !== '' && distancia1 !== '' && distancia2 !== '' && distancia3 !== '' && percentualVAM1 !== '' && percentualVAM2 !== '' && percentualVAM3 !== '') {
+                document.querySelector('input[type="submit"]').disabled = false;
+            } else {
+                document.querySelector('input[type="submit"]').disabled = true;
+            }
+        });
+
+        document.getElementById('formulario').addEventListener('submit', function(event) {
+            event.preventDefault(); // Impede o envio do formulário
+            console.log("Formulário enviado!"); // Verifica se o código JavaScript está sendo executado
+
+            // Captura os valores dos campos de entrada
+            var vam = parseFloat(document.getElementById('VAM').value);
+            var distancia1 = parseFloat(document.getElementById('distancia1').value);
+            var distancia2 = parseFloat(document.getElementById('distancia2').value);
+            var distancia3 = parseFloat(document.getElementById('distancia3').value);
+            var percentualVAM1 = parseFloat(document.getElementById('%VAM1').value);
+            var percentualVAM2 = parseFloat(document.getElementById('%VAM2').value);
+            var percentualVAM3 = parseFloat(document.getElementById('%VAM3').value);
+
+            // Realiza os cálculos necessários
+            var velocidade1 = (vam * (percentualVAM1 / 100));
+            var velocidade2 = (vam * (percentualVAM2 / 100));
+            var velocidade3 = (vam * (percentualVAM3 / 100));  
+            var distanciatotal = (distancia1+distancia2+distancia3);        
+            var mediaVelocidade = ((velocidade1*distancia1) + (velocidade2*distancia2) + (velocidade3*distancia3)) / (distanciatotal);
+
+            //Realiza os cálculos dos tempos parciais
+            var tempoResultado1 = distancia1 / velocidade1;
+            var tempoResultado2 = distancia2 / velocidade2;
+            var tempoResultado3 = distancia3 / velocidade3;
+
+            
+            var tempo = distanciatotal / mediaVelocidade; // Calcula o tempo em horas
+
+            var pace1 = 3600 / velocidade1; // Calcula o pace em segundos por Km
+            var paceMinutos1 = Math.floor(pace1 / 60); // Converte os segundos para minutos
+            var paceSegundos1 = Math.floor(pace1 % 60); // Calcula os segundos restantes
+            var paceFormatado1 = ('0' + paceMinutos1).slice(-2) + ':' + ('0' + paceSegundos1).slice(-2); // Formata o pace para o formato "mm:ss"
+
+            var pace2 = 3600 / velocidade2; // Calcula o pace em segundos por Km
+            var paceMinutos2 = Math.floor(pace2 / 60); // Converte os segundos para minutos
+            var paceSegundos2 = Math.floor(pace2 % 60); // Calcula os segundos restantes
+            var paceFormatado2 = ('0' + paceMinutos2).slice(-2) + ':' + ('0' + paceSegundos2).slice(-2); // Formata o pace para o formato "mm:ss"
+
+            var pace3 = 3600 / velocidade3; // Calcula o pace em segundos por Km
+            var paceMinutos3 = Math.floor(pace3 / 60); // Converte os segundos para minutos
+            var paceSegundos3 = Math.floor(pace3 % 60); // Calcula os segundos restantes
+            var paceFormatado3 = ('0' + paceMinutos3).slice(-2) + ':' + ('0' + paceSegundos3).slice(-2); // Formata o pace para o formato "mm:ss"
+
+            // Converte o tempo total para horas, minutos e segundos
+            var tempoHoras = Math.floor(tempo);
+            var tempoMinutos = Math.floor((tempo - tempoHoras) * 60);
+            var tempoSegundos = Math.floor((tempo - tempoHoras) * 3600 - tempoMinutos * 60);
+
+            // Formata o tempo total para o formato "hh:mm:ss"
+            var tempoFormatado = ('0' + tempoHoras).slice(-2) + ':' + ('0' + tempoMinutos).slice(-2) + ':' + ('0' + tempoSegundos).slice(-2);
+
+             // Converte o tempo 1 para horas, minutos e segundos
+             var tempoHoras1 = Math.floor(tempoResultado1);
+            var tempoMinutos1 = Math.floor((tempoResultado1 - tempoHoras1) * 60);
+            var tempoSegundos1 = Math.floor((tempoResultado1 - tempoHoras1) * 3600 - tempoMinutos1 * 60);
+
+            // Formata o tempo total 1 o formato "hh:mm:ss"
+            var tempoFormatado1 = ('0' + tempoHoras1).slice(-2) + ':' + ('0' + tempoMinutos1).slice(-2) + ':' + ('0' + tempoSegundos1).slice(-2);
+
+            // Converte o tempo 2 para horas, minutos e segundos
+            var tempoHoras2 = Math.floor(tempoResultado2);
+            var tempoMinutos2 = Math.floor((tempoResultado2 - tempoHoras2) * 60);
+            var tempoSegundos2 = Math.floor((tempoResultado2 - tempoHoras2) * 3600 - tempoMinutos2 * 60);
+
+            // Formata o tempo 2 para o formato "hh:mm:ss"
+            var tempoFormatado2 = ('0' + tempoHoras2).slice(-2) + ':' + ('0' + tempoMinutos2).slice(-2) + ':' + ('0' + tempoSegundos2).slice(-2);
+
+            // Converte o tempo 3 para horas, minutos e segundos
+            var tempoHoras3 = Math.floor(tempoResultado3);
+            var tempoMinutos3 = Math.floor((tempoResultado3 - tempoHoras3) * 60);
+            var tempoSegundos3 = Math.floor((tempoResultado3 - tempoHoras3) * 3600 - tempoMinutos3 * 60);
+
+            // Formata o tempo3 para o formato "hh:mm:ss"
+            var tempoFormatado3 = ('0' + tempoHoras3).slice(-2) + ':' + ('0' + tempoMinutos3).slice(-2) + ':' + ('0' + tempoSegundos3).slice(-2);
+
+            // Exibe os resultados na página
+            document.getElementById('tempoResultado').innerHTML = tempoFormatado;
+            document.getElementById('paceResultado1').innerHTML = paceFormatado1;
+            document.getElementById('velocidadeResultado1').innerHTML = velocidade1.toFixed(2) + ' km/h';
+            document.getElementById('tempoResultado1').innerHTML = tempoFormatado1;
+            document.getElementById('paceResultado2').innerHTML = paceFormatado2;
+            document.getElementById('velocidadeResultado2').innerHTML = velocidade2.toFixed(2) + ' km/h';
+            document.getElementById('tempoResultado2').innerHTML = tempoFormatado2;
+            document.getElementById('paceResultado3').innerHTML = paceFormatado3;
+            document.getElementById('velocidadeResultado3').innerHTML = velocidade3.toFixed(2) + ' km/h';
+            document.getElementById('tempoResultado3').innerHTML = tempoFormatado3;
+
+            // Exibe a tabela de resultados e esconde o formulário
+            document.getElementById('formulario').style.display = 'none';
+            document.getElementById('resultadoTable').style.display = 'table';
+        });
+    </script>
+</body>
+</html>

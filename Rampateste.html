@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rampa</title>
+    <style>
+        * * {
+            margin: 0;
+            padding: 0;
+        }
+
+        .fundo {
+            background-color: rgb(175, 27, 27);
+            height: 100vh;
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            position: relative;
+        }
+
+        .subfundo{
+            background-image: url(Blog_do_treinador2.jpg);
+            height: 16%;
+            background-repeat: no-repeat;
+            background-position: center;
+            background-size: cover;
+        }
+
+        .conteudo {
+            position: absolute;
+            top: 62%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: white;
+            text-align: center;
+            font-family: Arial, sans-serif;
+        }
+
+        .formulario {
+            background-color: rgba(0, 0, 0, 0.5);
+            padding: 20px;
+            border-radius: 10px;
+        }
+
+        input[type="number"],
+        input[type="submit"] {
+            width: 100%;
+            padding: 8px;
+            margin-top: 8px;
+            margin-bottom: 8px;
+            border: none;
+            border-radius: 5px;
+            background-color: #f0f0f0;
+            font-size: 16px;
+            box-sizing: border-box;
+        }
+
+        input[type="submit"] {
+            background-color: #4caf50;
+            color: white;
+            cursor: pointer;
+        }
+
+        input[type="submit"]:disabled {
+            background-color: gray;
+            cursor: not-allowed;
+        }
+
+        #tempoResultado,
+        .resultado {
+            margin-top: 20px;
+        }
+
+        h2 {
+            margin-bottom: 20px;
+            font-size: xx-large;
+        }
+
+        body{
+            background-color: rgb(175, 27, 27);
+        }
+
+        table {
+            margin-top: 50px;
+            margin-left: auto;
+            margin-right: auto;
+            border-collapse: collapse;
+            width: 80%;
+        }
+
+        th,
+        td {
+            border: 1px solid white;
+            padding: 8px;
+            text-align: center;
+        }
+
+        th {
+            background-color: rgba(0, 0, 0, 0.5);
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <div class="fundo">
+        <div class="subfundo">
+            <div class="conteudo">
+                <h2>Treino de Limiar</h2>
+                <form id="formulario" class="formulario">
+                    <label for="VAM">VAM do atleta em Km/h:</label><br>
+                    <input type="number" id="VAM" name="VAM" min="0" required><br><br>
+
+                    <label for="serie">Quantidade de séries:</label><br>
+                    <input type="number" id="serie" name="serie" min="0" required><br><br>
+
+                    <label for="descansos">Descanso entre as séries:</label><br>
+                    <input type="number" id="descansos" name="descansos" min="0" required><br><br>
+
+                    <label for="repetiçoes">Quantidade de repetições:</label><br>
+                    <input type="number" id="repetiçoes" name="repetiçoes" min="0" required><br><br>
+
+                    <label for="descansor">Descanso entre as repetições:</label><br>
+                    <input type="number" id="descansor" name="descansor" min="0" required><br><br>
+
+                    <label for="distanciaa">Distância do aquecimento em Km:</label><br>
+                    <input type="number" id="distanciaa" name="distanciaa" min="0" required><br><br>
+
+                    <label for="%VAMa">Percentual da VAM aquecimento:</label><br>
+                    <input type="number" id="%VAMa" name="%VAMa" min="0" max="100" required><br><br>
+
+                    <label for="distanciasd">Distância da rampa em m:</label><br>
+                    <input type="number" id="distanciasd" name="distanciasd" min="0" required><br><br>
+
+                    <label for="%VAMs">Percentual da VAM rampa subida:</label><br>
+                    <input type="number" id="%VAMs" name="%VAMs" min="0" max="100" required><br><br>
+
+                    <label for="%VAMd">Percentual da VAM rampa descida:</label><br>
+                    <input type="number" id="%VAMd" name="%VAMd" min="0" max="100" required><br><br>
+
+                    <label for="distanciar">Distância do resfriamento em Km:</label><br>
+                    <input type="number" id="distanciar" name="distanciar" min="0" required><br><br>
+
+                    <label for="%VAMr">Percentual da VAM resfriamento:</label><br>
+                    <input type="number" id="%VAMr" name="%VAMr" min="0" max="100" required><br><br>
+
+                    <input type="submit" value="Calcular" disabled>
+                </form>
+
+                <!-- Tabela para exibir os resultados aquecimento -->
+                <table id="resultadoTablea" style="display: none;">
+                    <tr>
+                        <th rowspan="2" class="resultado">Aquecimento</th>
+                        <th>Pace</th>
+                        <th>Velocidade</th>
+                        <th>Tempo</th>
+                    </tr>
+                    <tr>
+                        <td id="paceFormadoa" class="resultado"></td>
+                        <td id="velocidadea" class="resultado"></td>
+                        <td id="tempoResultadoa" class="resultado"></td>
+                    </tr>
+                </table>
+
+                <!-- Tabela para exibir os resultados rampa -->
+                <table id="resultadoTablesd" style="display: none;">
+                    <tr>
+                        <th>Tipo</th>
+                        <th>Pace</th>
+                        <th>Velocidade</th>
+                        <th>Tempo</th>
+                        <th>Tempo da Série</th>
+                    </tr>
+                    <tr>
+                        <td>Subida</td>
+                        <td id="paceFormados" class="resultado"></td>
+                        <td id="velociades" class="resultado"></td>
+                        <td id="tempos" class="resultado"></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>Descida</td>
+                        <td id="paceFormadod" class="resultado"></td>
+                        <td id="velocidaded" class="resultado"></td>
+                        <td id="tempod" class="resultado"></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>Descanso</td>
+                        <td>00:00</td>
+                        <td>0Km/h</td>
+                        <td id="descansor" class="resultado"></td>
+                        <td></td>
+                    </tr>
+                </table>
+
+                <!-- Tabela para exibir os resultados resfriamento -->
+                <table id="resultadoTabler" style="display: none;">
+                    <tr>
+                        <th rowspan="2" class="resultado">Resfriamento</th>
+                        <th>Pace</th>
+                        <th>Velocidade</th>
+                        <th>Tempo</th>
+                    </tr>
+                    <tr>
+                        <td id="paceFormador" class="resultado"></td>
+                        <td id="velocidadeResultador" class="resultado"></td>
+                        <td id="tempoResultador" class="resultado"></td>
+                    </tr>
+                </table>
+
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('formulario').addEventListener('input', function() {
+            var vam = document.getElementById('VAM').value;
+            var serie = document.getElementById('serie').value;
+            var descansos = document.getElementById('descansos').value;
+            var repetiçoes = document.getElementById('repetiçoes').value;
+            var descansor = document.getElementById('descansor').value;
+            var distanciaa = document.getElementById('distanciaa').value;
+            var vama = document.getElementById('%VAMa').value;
+            var distanciasd = document.getElementById('distanciasd').value;
+            var vams = document.getElementById('%VAMs').value;
+            var vamd = document.getElementById('%VAMd').value;
+            var distanciar = document.getElementById('distanciar').value;
+            var vamr = document.getElementById('%VAMr').value;
+
+            if (vam !== '' && serie !== '' && descansos !== '' && repetiçoes !== '' && descansor !== '' && distanciaa !== '' && vama !== '' && distanciasd !== '' && vams !== '' && vamd !== '' && distanciar !== '' && vamr !== '') {
+                document.querySelector('input[type="submit"]').disabled = false;
+            } else {
+                document.querySelector('input[type="submit"]').disabled = true;
+            }
+        });
+
+        document.getElementById('formulario').addEventListener('submit', function(event) {
+            event.preventDefault(); // Impede o envio do formulário
+            console.log("Formulário enviado!"); // Verifica se o código JavaScript está sendo executado
+
+            // Captura os valores dos campos de entrada
+            var vam = parseFloat(document.getElementById('VAM').value);
+            var serie = parseFloat(document.getElementById('serie').value);
+            var descansos = parseFloat(document.getElementById('descansos').value);
+            var repetiçoes = parseFloat(document.getElementById('repetiçoes').value);
+            var descansor = parseFloat(document.getElementById('descansor').value);
+            var distanciaa = parseFloat(document.getElementById('distanciaa').value);
+            var vama = parseFloat(document.getElementById('%VAMa').value);
+            var distanciasd = parseFloat(document.getElementById('distanciasd').value);
+            var distanciasd = distanciasd/1000;
+            var vams = parseFloat(document.getElementById('%VAMs').value);
+            var vamd = parseFloat(document.getElementById('%VAMd').value);
+            var distanciar = parseFloat(document.getElementById('distanciar').value);
+            var vamr = parseFloat(document.getElementById('%VAMr').value);
+
+            // Realiza os cálculos necessários
+            var velocidadea = (vam * (vama / 100));
+            var velocidades = (vam * (vams / 100));
+            var velocidaded = (vam * (vamd / 100));  
+            var velocidader = (vam * (vamr / 100));
+
+            var pacea = 3600 / velocidadea; // Calcula o pace em segundos por Km
+            var paceMinutosa = Math.floor(pacea / 60); // Converte os segundos para minutos
+            var paceSegundosa = Math.floor(pacea % 60); // Calcula os segundos restantes
+            var paceFormatadoa = ('0' + paceMinutosa).slice(-2) + ':' + ('0' + paceSegundosa).slice(-2); // Formata o pace para o formato "mm:ss"
+
+            var paces = 3600 / velocidades; // Calcula o pace em segundos por Km
+            var paceMinutoss = Math.floor(paces / 60); // Converte os segundos para minutos
+            var paceSegundoss = Math.floor(paces % 60); // Calcula os segundos restantes
+            var paceFormatados = ('0' + paceMinutoss).slice(-2) + ':' + ('0' + paceSegundoss).slice(-2); // Formata o pace para o formato "mm:ss"
+
+            var paced = 3600 / velocidaded; // Calcula o pace em segundos por Km
+            var paceMinutosd = Math.floor(paced / 60); // Converte os segundos para minutos
+            var paceSegundosd = Math.floor(paced % 60); // Calcula os segundos restantes
+            var paceFormatadod = ('0' + paceMinutosd).slice(-2) + ':' + ('0' + paceSegundosd).slice(-2); // Formata o pace para o formato "mm:ss"
+
+            var pacer = 3600 / velocidader; // Calcula o pace em segundos por Km
+            var paceMinutosr = Math.floor(pacer / 60); // Converte os segundos para minutos
+            var paceSegundosr = Math.floor(pacer % 60); // Calcula os segundos restantes
+            var paceFormatador = ('0' + paceMinutosr).slice(-2) + ':' + ('0' + paceSegundosr).slice(-2); // Formata o pace para o formato "mm:ss"
+
+            var tempoa = distanciaa / velocidadea; // Calcula o tempo em horas do aquecimento
+            var tempos = distanciasd / velocidades; // Calcula o tempo em horas da subida
+            var tempod = distanciasd / velocidaded; // Calcula o tempo em horas da descida
+            var tempor = distanciar / velocidader; // Calcula o tempo em horas do resfriamento
+
+            // Converte o tempo do aquecimento para horas, minutos e segundos
+            var tempoHorasa = Math.floor(tempoa);
+            var tempoMinutosa = Math.floor((tempoa - tempoHorasa) * 60);
+            var tempoSegundosa = Math.round(((tempoa - tempoHorasa) * 3600) % 60);
+
+            // Converte o tempo da subida para horas, minutos e segundos
+            var tempoHorass = Math.floor(tempos);
+            var tempoMinutoss = Math.floor((tempos - tempoHorass) * 60);
+            var tempoSegundoss = Math.round(((tempos - tempoHorass) * 3600) % 60);
+
+            // Converte o tempo da descida para horas, minutos e segundos
+            var tempoHorasd = Math.floor(tempod);
+            var tempoMinutosd = Math.floor((tempod - tempoHorasd) * 60);
+            var tempoSegundosd = Math.round(((tempod - tempoHorasd) * 3600) % 60);
+
+            // Converte o tempo do resfriamento para horas, minutos e segundos
+            var tempoHorasr = Math.floor(tempor);
+            var tempoMinutosr = Math.floor((tempor - tempoHorasr) * 60);
+            var tempoSegundosr = Math.round(((tempor - tempoHorasr) * 3600) % 60);
+
+            // Atualiza os valores na página HTML
+            document.getElementById('resultadoTablea').style.display = "block";
+            document.getElementById('resultadoTablesd').style.display = "block";
+            document.getElementById('resultadoTabler').style.display = "block";
+
+            document.getElementById('paceFormadoa').textContent = paceFormatadoa;
+            document.getElementById('velocidadea').textContent = velocidadea.toFixed(2) + " Km/h";
+            document.getElementById('tempoResultadoa').textContent = tempoHorasa + 'h' + tempoMinutosa + 'm' + tempoSegundosa + 's';
+
+            document.getElementById('paceFormados').textContent = paceFormatados;
+            document.getElementById('velociades').textContent = velocidades.toFixed(2) + " Km/h";
+            document.getElementById('tempos').textContent = tempoHorass + 'h' + tempoMinutoss + 'm' + tempoSegundoss + 's';
+
+            document.getElementById('paceFormadod').textContent = paceFormatadod;
+            document.getElementById('velocidaded').textContent = velocidaded.toFixed(2) + " Km/h";
+            document.getElementById('tempod').textContent = tempoHorasd + 'h' + tempoMinutosd + 'm' + tempoSegundosd + 's';
+
+            document.getElementById('paceFormador').textContent = paceFormatador;
+            document.getElementById('velocidadeResultador').textContent = velocidader.toFixed(2) + " Km/h";
+            document.getElementById('tempoResultador').textContent = tempoHorasr + 'h' + tempoMinutosr + 'm' + tempoSegundosr + 's';
+        });
+    </script>
+</body>
+</html>

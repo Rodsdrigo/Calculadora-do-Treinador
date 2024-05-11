@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>C. Constante</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        .fundo {
+            background-color: rgb(175, 27, 27);
+            height: 100vh;
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            position: relative;
+        }
+
+        .subfundo {
+            background-image: url(Blog_do_treinador2.jpg);
+            height: 16%;
+            background-repeat: no-repeat;
+            background-position: center;
+            background-size: cover;
+        }
+
+        .conteudo {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: white;
+            text-align: center;
+            font-family: Arial, sans-serif;
+        }
+
+        .formulario {
+            background-color: rgba(0, 0, 0, 0.5);
+            padding: 20px;
+            border-radius: 10px;
+
+        }
+
+        input[type="number"],
+        input[type="submit"] {
+            width: 100%;
+            padding: 8px;
+            margin-top: 8px;
+            margin-bottom: 8px;
+            border: none;
+            border-radius: 5px;
+            background-color: #f0f0f0;
+            font-size: 16px;
+            box-sizing: border-box;
+        }
+
+        input[type="submit"] {
+            background-color: #4caf50;
+            color: white;
+            cursor: pointer;
+        }
+
+        input[type="submit"]:disabled {
+            background-color: gray;
+            cursor: not-allowed;
+        }
+
+        #tempoResultado,
+        #paceResultado,
+        #velocidadeResultado {
+            margin-top: 20px;
+        }
+
+        h2 {
+            margin-bottom: 20px;
+            /* Espaçamento entre C. Constante e o próximo elemento */
+            font-size: xx-large;
+        }
+
+        table {
+            margin-top: 50px;
+            margin-left: auto;
+            margin-right: auto;
+            border-collapse: collapse;
+            width: 80%;
+        }
+
+        th,
+        td {
+            border: 1px solid white;
+            padding: 8px;
+            text-align: center;
+        }
+
+        th {
+            background-color:rgba(0, 0, 0, 0.5);
+            color: white;
+        }
+        td:nth-child(2) {
+        width: 150px;}
+    </style>
+</head>
+
+<body>
+    <div class="fundo">
+        <div class="subfundo">
+            <div class="conteudo">
+
+                <h2>C. Constante</h2>
+                <form id="formulario" class="formulario">
+
+                    <label for="VAM">VAM do atleta em Km/h:</label><br>
+                    <input type="number" id="VAM" name="VAM" min="0" required><br><br>
+
+                    <label for="distancia">Distância em Km:</label><br>
+                    <input type="number" id="distancia" name="distancia" min="0" required><br><br>
+
+                    <label for="%VAM">Percentual da VAM:</label><br>
+                    <input type="number" id="%VAM" name="%VAM" min="0" max="100" required><br><br>
+                    <input type="submit" value="Calcular" disabled>
+                </form>
+
+                <!-- Tabela para exibir os resultados -->
+                <table id="resultadoTable" style="display: none;">
+                     <tr>
+                        <th>Pace</th>
+                        <th>Velocidade</th>
+                        <th>Tempo</th>
+                    </tr>
+                    <tr>
+                        <td id="paceResultado"></td>
+                        <td id="velocidadeResultado"></td>
+                        <td id="tempoResultado"></td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+
+
+    <script>
+        document.getElementById('formulario').addEventListener('input', function () {
+            var vam = document.getElementById('VAM').value;
+            var distancia = document.getElementById('distancia').value;
+            var percentualVAM = document.getElementById('%VAM').value;
+
+            if (vam !== '' && distancia !== '' && percentualVAM !== '') {
+                document.querySelector('input[type="submit"]').disabled = false;
+            } else {
+                document.querySelector('input[type="submit"]').disabled = true;
+            }
+        });
+
+        document.getElementById('formulario').addEventListener('submit', function (event) {
+            event.preventDefault(); // Impede o envio do formulário
+            console.log("Formulário enviado!"); // Verifica se o código JavaScript está sendo executado
+
+            // Captura os valores dos campos de entrada
+            var vam = parseFloat(document.getElementById('VAM').value);
+            var distancia = parseFloat(document.getElementById('distancia').value);
+            var percentualVAM = parseFloat(document.getElementById('%VAM').value);
+
+            // Realiza os cálculos necessários
+            var velocidade = (vam * (percentualVAM / 100)).toFixed(2);
+            var tempo = distancia / velocidade; // Calcula o tempo em horas
+            var paceSegundos = Math.floor((tempo * 3600) / distancia); // Calcula o pace em segundos por Km
+            var paceMinutos = Math.floor(paceSegundos / 60); // Converte os segundos para minutos
+            var paceSegundosRestantes = paceSegundos % 60; // Calcula os segundos restantes
+            var paceFormatado = ('0' + paceMinutos).slice(-2) + ':' + ('0' + paceSegundosRestantes).slice(-2); // Formata o pace para o formato "mm:ss"
+
+            // Converte o tempo total para horas, minutos e segundos
+            var tempoHoras = Math.floor(tempo);
+            var tempoMinutos = Math.floor((tempo - tempoHoras) * 60);
+            var tempoSegundos = Math.floor(((tempo - tempoHoras) * 3600) - (tempoMinutos * 60));
+
+            // Formata o tempo total para o formato "hh:mm:ss"
+            var tempoFormatado = ('0' + tempoHoras).slice(-2) + ':' + ('0' + tempoMinutos).slice(-2) + ':' + ('0' + tempoSegundos).slice(-2);
+
+            // Exibe os resultados na página
+            document.getElementById('tempoResultado').innerHTML = tempoFormatado;
+            document.getElementById('paceResultado').innerHTML = paceFormatado;
+            document.getElementById('velocidadeResultado').innerHTML = velocidade + ' Km/h';
+
+            // Exibe a tabela de resultados e esconde o formulário
+            document.getElementById('formulario').style.display =            'none';
+            document.getElementById('resultadoTable').style.display = 'table';
+        });
+    </script>
+</body>
+
+</html>
