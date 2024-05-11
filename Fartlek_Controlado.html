@@ -118,17 +118,17 @@
                     <label for="VAM_aquecimento">Percentual VAM aquecimento:</label><br>
                     <input type="number" id="VAM_aquecimento" name="VAM_aquecimento" min="0" max="200" required><br><br>
 
-                    <label for="distancia_intencidade_minima">Distância da menor intencidade</label><br>
-                    <input type="number" id="distancia_intencidade_minima" name="distancia_intencidade_minima" min="0" required><br><br>
+                    <label for="distancia_intensidade_minima">Distância da menor intensidade</label><br>
+                    <input type="number" id="distancia_intensidade_minima" name="distancia_intensidade_minima" min="0" required><br><br>
 
-                    <label for="VAM_intencidade_minima">Percentual VAM da menor intencidade:</label><br>
-                    <input type="number" id="VAM_intencidade_minima" name="VAM_intencidade_minima" min="0" max="200" required><br><br>
+                    <label for="VAM_intensidade_minima">Percentual VAM da menor intensidade:</label><br>
+                    <input type="number" id="VAM_intensidade_minima" name="VAM_intensidade_minima" min="0" max="200" required><br><br>
 
-                    <label for="distancia_intencidade_maxima">Distância da menor intencidade</label><br>
-                    <input type="number" id="distancia_intencidade_maxima" name="distancia_intencidade_maxima" min="0" required><br><br>
+                    <label for="distancia_intensidade_maxima">Distância da menor intensidade</label><br>
+                    <input type="number" id="distancia_intensidade_maxima" name="distancia_intensidade_maxima" min="0" required><br><br>
 
-                    <label for="VAM_intencidade_maxima">Percentual VAM da menor intencidade:</label><br>
-                    <input type="number" id="VAM_intencidade_maxima" name="VAM_intencidade_maxima" min="0" max="200" required><br><br>
+                    <label for="VAM_intensidade_maxima">Percentual VAM da menor intensidade:</label><br>
+                    <input type="number" id="VAM_intensidade_maxima" name="VAM_intensidade_maxima" min="0" max="200" required><br><br>
 
                     <label for="distancia_resfriamento">Distância do resfriamento:</label><br>
                     <input type="number" id="distancia_resfriamento" name="distancia_resfriamento" min="0" required><br><br>
@@ -155,7 +155,7 @@
                 </table>
                 <table id="resultadoTable1" style="display: none;">
                     <tr>
-                        <th>Intencidade</th>
+                        <th>Intensidade</th>
                         <th>Pace</th>
                         <th>Velocidade</th>
                         <th>Distância</th>
@@ -163,17 +163,17 @@
                     </tr>
                     <tr>
                         <td>Mínima</td>
-                        <td id="paceFormatado_intencidade_minima" class="resultado"></td>
-                        <td id="velocidade_intencidade_minima" class="resultado"></td>
-                        <td class="distancia-intencidade-minima"></td>
-                        <td id="tempoFormatado_intencidade_minima" class="resultado"></td>
+                        <td id="paceFormatado_intensidade_minima" class="resultado"></td>
+                        <td id="velocidade_intensidade_minima" class="resultado"></td>
+                        <td class="distancia-intensidade-minima"></td>
+                        <td id="tempoFormatado_intensidade_minima" class="resultado"></td>
                     </tr>
                     <tr>
                         <td>Máxima</td>
-                        <td id="paceFormatado_intencidade_maxima" class="resultado"></td>
-                        <td id="velocidade_intencidade_maxima" class="resultado"></td>
-                        <td class="distancia-intencidade-maxima"></td>
-                        <td id="tempoFormatado_intencidade_maxima" class="resultado"></td>
+                        <td id="paceFormatado_intensidade_maxima" class="resultado"></td>
+                        <td id="velocidade_intensidade_maxima" class="resultado"></td>
+                        <td class="distancia-intensidade-maxima"></td>
+                        <td id="tempoFormatado_intensidade_maxima" class="resultado"></td>
                     </tr>
 
                 </table>
@@ -209,14 +209,14 @@
             var vam = document.getElementById('VAM').value;
             var distancia_aquecimento = document.getElementById('distancia_aquecimento').value;
             var vam_aquecimento = document.getElementById('VAM_aquecimento').value;
-            var distancia_intencidade_minima = document.getElementById('distancia_intencidade_minima').value;
-            var vam_intencidade_minima = document.getElementById('VAM_intencidade_minima').value;
-            var distancia_intencidade_maxima = document.getElementById('distancia_intencidade_maxima').value;
-            var vam_intencidade_maxima = document.getElementById('VAM_intencidade_maxima').value;
+            var distancia_intensidade_minima = document.getElementById('distancia_intensidade_minima').value;
+            var vam_intensidade_minima = document.getElementById('VAM_intensidade_minima').value;
+            var distancia_intensidade_maxima = document.getElementById('distancia_intensidade_maxima').value;
+            var vam_intensidade_maxima = document.getElementById('VAM_intensidade_maxima').value;
             var distancia_resfriamento = document.getElementById('distancia_resfriamento').value;
             var vam_resfriamento = document.getElementById('VAM_resfriamento').value;
     
-            if (vam !== '' && distancia_aquecimento !== '' && vam_aquecimento !== '' && distancia_intencidade_minima !== '' && vam_intencidade_minima !== '' && distancia_intencidade_maxima !== '' && vam_intencidade_maxima !== '' && distancia_resfriamento !== '' && vam_resfriamento !== '') {
+            if (vam !== '' && distancia_aquecimento !== '' && vam_aquecimento !== '' && distancia_intensidade_minima !== '' && vam_intensidade_minima !== '' && distancia_intensidade_maxima !== '' && vam_intensidade_maxima !== '' && distancia_resfriamento !== '' && vam_resfriamento !== '') {
                 document.querySelector('input[type="submit"]').disabled = false;
             } else {
                 document.querySelector('input[type="submit"]').disabled = true;
@@ -229,31 +229,31 @@
             var vam = parseFloat(document.getElementById('VAM').value);
             var distancia_aquecimento = parseFloat(document.getElementById('distancia_aquecimento').value);
             var vam_aquecimento = parseFloat(document.getElementById('VAM_aquecimento').value);
-            var distancia_intencidade_minima = parseFloat(document.getElementById('distancia_intencidade_minima').value);
-            var vam_intencidade_minima = parseFloat(document.getElementById('VAM_intencidade_minima').value);
-            var distancia_intencidade_maxima = parseFloat(document.getElementById('distancia_intencidade_maxima').value);
-            var vam_intencidade_maxima = parseFloat(document.getElementById('VAM_intencidade_maxima').value);
+            var distancia_intensidade_minima = parseFloat(document.getElementById('distancia_intensidade_minima').value);
+            var vam_intensidade_minima = parseFloat(document.getElementById('VAM_intensidade_minima').value);
+            var distancia_intensidade_maxima = parseFloat(document.getElementById('distancia_intensidade_maxima').value);
+            var vam_intensidade_maxima = parseFloat(document.getElementById('VAM_intensidade_maxima').value);
             var distancia_resfriamento = parseFloat(document.getElementById('distancia_resfriamento').value);
             var vam_resfriamento = parseFloat(document.getElementById('VAM_resfriamento').value);
           
-            if (!isNaN(vam) && !isNaN(distancia_aquecimento) && !isNaN(vam_aquecimento) && !isNaN(distancia_intencidade_minima) && !isNaN(vam_intencidade_minima) && !isNaN(distancia_intencidade_maxima) && !isNaN(vam_intencidade_maxima) && !isNaN(distancia_resfriamento) && !isNaN(vam_resfriamento)) {
-                calcularResultados(vam, distancia_aquecimento, vam_aquecimento, distancia_intencidade_minima, vam_intencidade_minima, distancia_intencidade_maxima, vam_intencidade_maxima, distancia_resfriamento, vam_resfriamento);
+            if (!isNaN(vam) && !isNaN(distancia_aquecimento) && !isNaN(vam_aquecimento) && !isNaN(distancia_intensidade_minima) && !isNaN(vam_intensidade_minima) && !isNaN(distancia_intensidade_maxima) && !isNaN(vam_intensidade_maxima) && !isNaN(distancia_resfriamento) && !isNaN(vam_resfriamento)) {
+                calcularResultados(vam, distancia_aquecimento, vam_aquecimento, distancia_intensidade_minima, vam_intensidade_minima, distancia_intensidade_maxima, vam_intensidade_maxima, distancia_resfriamento, vam_resfriamento);
             } else {
                 alert('Por favor, preencha todos os campos corretamente.');
             }
         });
 
-        function calcularResultados(vam, distancia_aquecimento, vam_aquecimento, distancia_intencidade_minima, vam_intencidade_minima, distancia_intencidade_maxima, vam_intencidade_maxima, distancia_resfriamento, vam_resfriamento) {
+        function calcularResultados(vam, distancia_aquecimento, vam_aquecimento, distancia_intensidade_minima, vam_intensidade_minima, distancia_intensidade_maxima, vam_intensidade_maxima, distancia_resfriamento, vam_resfriamento) {
         document.getElementById('formulario').style.display = 'none';
 
             var velocidade_aquecimento = vam * (vam_aquecimento / 100);
-            var velocidade_intencidade_minima = vam * (vam_intencidade_minima / 100);
-            var velocidade_intencidade_maxima = vam * (vam_intencidade_maxima / 100);
+            var velocidade_intensidade_minima = vam * (vam_intensidade_minima / 100);
+            var velocidade_intensidade_maxima = vam * (vam_intensidade_maxima / 100);
             var velocidade_resfriamento = vam * (vam_resfriamento / 100);
 
             var tempo_aquecimento = distancia_aquecimento / velocidade_aquecimento;
-            var tempo_intencidade_minima = distancia_intencidade_minima / velocidade_intencidade_minima;
-            var tempo_intencidade_maxima = distancia_intencidade_maxima / velocidade_intencidade_maxima;
+            var tempo_intensidade_minima = distancia_intensidade_minima / velocidade_intensidade_minima;
+            var tempo_intensidade_maxima = distancia_intensidade_maxima / velocidade_intensidade_maxima;
             var tempo_resfriamento = distancia_resfriamento / velocidade_resfriamento;
 
             var tempoHoras_aquecimento = Math.floor(tempo_aquecimento);
@@ -261,15 +261,15 @@
             var tempoSegundos_aquecimento = Math.floor((tempo_aquecimento - tempoHoras_aquecimento) * 3600 - tempoMinutos_aquecimento * 60);
             var tempoFormatado_aquecimento = ('0' + tempoHoras_aquecimento).slice(-2) + ':' + ('0' + tempoMinutos_aquecimento).slice(-2) + ':' + ('0' + tempoSegundos_aquecimento).slice(-2);
 
-            var tempoHoras_intencidade_minima = Math.floor(tempo_intencidade_minima);
-            var tempoMinutos_intencidade_minima = Math.floor((tempo_intencidade_minima - tempoHoras_intencidade_minima) * 60);
-            var tempoSegundos_intencidade_minima = Math.floor((tempo_intencidade_minima - tempoHoras_intencidade_minima) * 3600 - tempoMinutos_intencidade_minima * 60);
-            var tempoFormatado_intencidade_minima = ('0' + tempoHoras_intencidade_minima).slice(-2) + ':' + ('0' + tempoMinutos_intencidade_minima).slice(-2) + ':' + ('0' + tempoSegundos_intencidade_minima).slice(-2);
+            var tempoHoras_intensidade_minima = Math.floor(tempo_intensidade_minima);
+            var tempoMinutos_intensidade_minima = Math.floor((tempo_intensidade_minima - tempoHoras_intensidade_minima) * 60);
+            var tempoSegundos_intensidade_minima = Math.floor((tempo_intensidade_minima - tempoHoras_intensidade_minima) * 3600 - tempoMinutos_intensidade_minima * 60);
+            var tempoFormatado_intensidade_minima = ('0' + tempoHoras_intensidade_minima).slice(-2) + ':' + ('0' + tempoMinutos_intensidade_minima).slice(-2) + ':' + ('0' + tempoSegundos_intensidade_minima).slice(-2);
 
-            var tempoHoras_intencidade_maxima = Math.floor(tempo_intencidade_maxima);
-            var tempoMinutos_intencidade_maxima = Math.floor((tempo_intencidade_maxima - tempoHoras_intencidade_maxima) * 60);
-            var tempoSegundos_intencidade_maxima = Math.floor((tempo_intencidade_maxima - tempoHoras_intencidade_maxima) * 3600 - tempoMinutos_intencidade_maxima * 60);
-            var tempoFormatado_intencidade_maxima = ('0' + tempoHoras_intencidade_maxima).slice(-2) + ':' + ('0' + tempoMinutos_intencidade_maxima).slice(-2) + ':' + ('0' + tempoSegundos_intencidade_maxima).slice(-2);
+            var tempoHoras_intensidade_maxima = Math.floor(tempo_intensidade_maxima);
+            var tempoMinutos_intensidade_maxima = Math.floor((tempo_intensidade_maxima - tempoHoras_intensidade_maxima) * 60);
+            var tempoSegundos_intensidade_maxima = Math.floor((tempo_intensidade_maxima - tempoHoras_intensidade_maxima) * 3600 - tempoMinutos_intensidade_maxima * 60);
+            var tempoFormatado_intensidade_maxima = ('0' + tempoHoras_intensidade_maxima).slice(-2) + ':' + ('0' + tempoMinutos_intensidade_maxima).slice(-2) + ':' + ('0' + tempoSegundos_intensidade_maxima).slice(-2);
 
             var tempoHoras_resfriamento = Math.floor(tempo_resfriamento);
             var tempoMinutos_resfriamento = Math.floor((tempo_resfriamento - tempoHoras_resfriamento) * 60);
@@ -281,23 +281,23 @@
             var paceSegundos_aquecimento = Math.floor(pace_aquecimento % 60);
             var paceFormatado_aquecimento = ('0' + paceMinutos_aquecimento).slice(-2) + ':' + ('0' + paceSegundos_aquecimento).slice(-2);
 
-            var pace_intencidade_minima = 3600 / velocidade_intencidade_minima;
-            var paceMinutos_intencidade_minima = Math.floor(pace_intencidade_minima / 60);
-            var paceSegundos_intencidade_minima = Math.floor(pace_intencidade_minima % 60);
-            var paceFormatado_intencidade_minima = ('0' + paceMinutos_intencidade_minima).slice(-2) + ':' + ('0' + paceSegundos_intencidade_minima).slice(-2);
+            var pace_intensidade_minima = 3600 / velocidade_intensidade_minima;
+            var paceMinutos_intensidade_minima = Math.floor(pace_intensidade_minima / 60);
+            var paceSegundos_intensidade_minima = Math.floor(pace_intensidade_minima % 60);
+            var paceFormatado_intensidade_minima = ('0' + paceMinutos_intensidade_minima).slice(-2) + ':' + ('0' + paceSegundos_intensidade_minima).slice(-2);
 
-            var pace_intencidade_maxima = 3600 / velocidade_intencidade_maxima;
-            var paceMinutos_intencidade_maxima = Math.floor(pace_intencidade_maxima / 60);
-            var paceSegundos_intencidade_maxima = Math.floor(pace_intencidade_maxima % 60);
-            var paceFormatado_intencidade_maxima = ('0' + paceMinutos_intencidade_maxima).slice(-2) + ':' + ('0' + paceSegundos_intencidade_maxima).slice(-2);
+            var pace_intensidade_maxima = 3600 / velocidade_intensidade_maxima;
+            var paceMinutos_intensidade_maxima = Math.floor(pace_intensidade_maxima / 60);
+            var paceSegundos_intensidade_maxima = Math.floor(pace_intensidade_maxima % 60);
+            var paceFormatado_intensidade_maxima = ('0' + paceMinutos_intensidade_maxima).slice(-2) + ':' + ('0' + paceSegundos_intensidade_maxima).slice(-2);
 
             var pace_resfriamento = 3600 / velocidade_resfriamento;
             var paceMinutos_resfriamento = Math.floor(pace_resfriamento / 60);
             var paceSegundos_resfriamento = Math.floor(pace_resfriamento % 60);
             var paceFormatado_resfriamento = ('0' + paceMinutos_resfriamento).slice(-2) + ':' + ('0' + paceSegundos_resfriamento).slice(-2);
 
-            var distancia_total = (distancia_aquecimento+distancia_resfriamento+distancia_intencidade_minima+distancia_intencidade_maxima).toFixed(2) + ' Km';
-            var tempo_total_emhoras = (tempo_aquecimento+tempo_resfriamento+tempo_intencidade_minima+tempo_intencidade_maxima);
+            var distancia_total = (distancia_aquecimento+distancia_resfriamento+distancia_intensidade_minima+distancia_intensidade_maxima).toFixed(2) + ' Km';
+            var tempo_total_emhoras = (tempo_aquecimento+tempo_resfriamento+tempo_intensidade_minima+tempo_intensidade_maxima);
 
 
             var tempo_total_horas = Math.floor(tempo_total_emhoras);
@@ -316,13 +316,13 @@
             document.getElementById('velocidade_aquecimento').textContent = velocidade_aquecimento.toFixed(2) + ' Km/h';
             document.getElementById('tempoFormatado_aquecimento').textContent = tempoFormatado_aquecimento;
 
-            document.getElementById('paceFormatado_intencidade_minima').textContent = paceFormatado_intencidade_minima;
-            document.getElementById('velocidade_intencidade_minima').textContent = velocidade_intencidade_minima.toFixed(2) + ' Km/h';
-            document.getElementById('tempoFormatado_intencidade_minima').textContent = tempoFormatado_intencidade_minima;
+            document.getElementById('paceFormatado_intensidade_minima').textContent = paceFormatado_intensidade_minima;
+            document.getElementById('velocidade_intensidade_minima').textContent = velocidade_intensidade_minima.toFixed(2) + ' Km/h';
+            document.getElementById('tempoFormatado_intensidade_minima').textContent = tempoFormatado_intensidade_minima;
 
-            document.getElementById('paceFormatado_intencidade_maxima').textContent = paceFormatado_intencidade_maxima;
-            document.getElementById('velocidade_intencidade_maxima').textContent = velocidade_intencidade_maxima.toFixed(2) + ' Km/h';
-            document.getElementById('tempoFormatado_intencidade_maxima').textContent = tempoFormatado_intencidade_maxima;
+            document.getElementById('paceFormatado_intensidade_maxima').textContent = paceFormatado_intensidade_maxima;
+            document.getElementById('velocidade_intensidade_maxima').textContent = velocidade_intensidade_maxima.toFixed(2) + ' Km/h';
+            document.getElementById('tempoFormatado_intensidade_maxima').textContent = tempoFormatado_intensidade_maxima;
 
             document.getElementById('paceFormatado_resfriamento').textContent = paceFormatado_resfriamento;
             document.getElementById('velocidade_resfriamento').textContent = velocidade_resfriamento.toFixed(2) + ' Km/h';
@@ -337,12 +337,12 @@
             
             });
             
-            document.querySelectorAll('.distancia-intencidade-minima').forEach(function(element) {
-            element.textContent = distancia_intencidade_minima.toFixed(2) + ' Km';
+            document.querySelectorAll('.distancia-intensidade-minima').forEach(function(element) {
+            element.textContent = distancia_intensidade_minima.toFixed(2) + ' Km';
             
             });
-            document.querySelectorAll('.distancia-intencidade-maxima').forEach(function(element) {
-            element.textContent = distancia_intencidade_maxima.toFixed(2) + ' Km';
+            document.querySelectorAll('.distancia-intensidade-maxima').forEach(function(element) {
+            element.textContent = distancia_intensidade_maxima.toFixed(2) + ' Km';
             
             });
 
