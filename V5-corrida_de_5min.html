@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>V5 : Corrida de 5 minutos (Dabonnevill et. AI. 2002)</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        .fundo {
+            background-color: rgb(175, 27, 27);
+            height: 100vh;
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            position: relative;
+        }
+
+        .subfundo {
+            background-image: url(Blog_do_treinador2.jpg);
+            height: 16%;
+            background-repeat: no-repeat;
+            background-position: center;
+            background-size: cover;
+        }
+
+        .conteudo {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: white;
+            text-align: center;
+            font-family: Arial, sans-serif;
+        }
+
+        .formulario {
+            background-color: rgba(0, 0, 0, 0.5);
+            padding: 20px;
+            border-radius: 10px;
+
+        }
+
+        input[type="number"],
+        input[type="submit"],
+        input[type="text"] {
+            width: 100%;
+            padding: 8px;
+            margin-top: 8px;
+            margin-bottom: 8px;
+            border: none;
+            border-radius: 5px;
+            background-color: #f0f0f0;
+            font-size: 16px;
+            box-sizing: border-box;
+        }
+
+        input[type="submit"] {
+            background-color: #4caf50;
+            color: white;
+            cursor: pointer;
+        }
+
+        input[type="submit"]:disabled {
+            background-color: gray;
+            cursor: not-allowed;
+        }
+
+        #tempoResultado,
+        #paceResultado,
+        #velocidadeResultado {
+            margin-top: 20px;
+        }
+
+        h2 {
+            margin-bottom: 20px;
+            /* Espaçamento entre C. Constante e o próximo elemento */
+            font-size: xx-large;
+        }
+
+        table {
+            margin-top: 50px;
+            margin-left: auto;
+            margin-right: auto;
+            border-collapse: collapse;
+            width: 80%;
+        }
+
+        th,
+        td {
+            border: 1px solid white;
+            padding: 8px;
+            text-align: center;
+        }
+
+        th {
+            background-color:rgba(0, 0, 0, 0.5);
+            color: white;
+        }
+
+    </style>
+</head>
+
+<body>
+    <div class="fundo">
+        <div class="subfundo">
+            <div class="conteudo">
+
+                <h2>V5 : Corrida de 5 minutos (Dabonnevill et. AI. 2002)</h2>
+                <form id="formulario" class="formulario">
+
+                    <label for="distancia">Distância em metros</label><br>
+                    <input type="number" id="distancia" name="distancia" min="0"><br><br>
+
+                    <input type="submit" value="Calcular" disabled>
+                </form>
+
+                <!-- Tabela para exibir os resultados -->
+                <table id="resultadoTable" style="display: none;">
+                     <tr>
+                        <th>VAM</th>
+                        <th>Pace VAM</th>
+                        <th>VO2</th>
+                    </tr>
+                    <tr>
+                        <td id="vam"></td>
+                        <td id="pace_vam"></td>
+                        <td id="vo2"></td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+
+
+    <script>
+        document.getElementById('formulario').addEventListener('input', function () {
+            
+            var distancia = document.getElementById('distancia').value;
+            
+            if (distancia !== '') {
+                document.querySelector('input[type="submit"]').disabled = false;
+            } else {
+                document.querySelector('input[type="submit"]').disabled = true;
+            }
+        });
+
+        document.getElementById('formulario').addEventListener('submit', function (event) {
+            event.preventDefault(); // Impede o envio do formulário
+            console.log("Formulário enviado!"); // Verifica se o código JavaScript está sendo executado
+
+            var distancia = parseFloat(document.getElementById('distancia').value);
+
+            var vo2 = (distancia/25)+3.5;
+            var vam = (vo2/3.5);
+            var pace_vam_hora = 3600/vam;
+        
+            var paceMinutos_vam = Math.floor(pace_vam_hora / 60);
+            var paceSegundos_vam = Math.floor(pace_vam_hora % 60);
+            var pace_vam = ('0' + paceMinutos_vam).slice(-2) + ':' + ('0' + paceSegundos_vam).slice(-2);
+
+            // Exibe os resultados na página
+            document.getElementById('vam').innerHTML = vam.toFixed(1) + ' Km/h';
+            document.getElementById('pace_vam').innerHTML = pace_vam;
+            document.getElementById('vo2').innerHTML = vo2.toFixed(1) + ' ml.kg/min';
+
+            // Exibe a tabela de resultados e esconde o formulário
+            document.getElementById('formulario').style.display = 'none';
+            document.getElementById('resultadoTable').style.display = 'table';
+        });
+    </script>
+</body>
+
+</html>
