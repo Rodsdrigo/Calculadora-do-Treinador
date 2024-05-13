@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora da VAM</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        .fundo{
+            background-color: rgb(175, 27, 27);
+            height: 100vh;
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            color: rgb(255, 255, 255);
+            font-family: ar;
+            text-align: center;
+            font-size: larger;
+        }
+        .subfundo{
+            background-image: url(Blog_do_treinador2.jpg);
+            height: 16%;
+            background-repeat: no-repeat;
+            background-position: center;
+            background-size: cover;
+        }
+        .fundobotoes{
+            position: absolute;
+            top: 58%;
+            left: 50%;
+            transform: translate(-50%,-50%);
+            border-radius: 15px;
+            padding: 15px;
+            background-color: rgba(0, 0, 0, 0.5);
+            padding: 20px;
+            border-radius: 10px;
+            font-family: Arial, sans-serif;
+        }
+        .botao{
+           width: 400px;
+           height: 60px;
+           background-position: center;
+           cursor: pointer;
+           background-color: rgb(175,27,27);
+           border: none;
+           font-size: large;
+           border-radius: 10px;
+           font-family: Arial, sans-serif;
+           color: white;
+           margin-top: 8px;
+        
+        }
+        .botao:hover{
+
+            background-color: rgb(129, 129, 129);
+        }
+        .subtitulo{
+
+            color: rgb(255, 255, 255);
+            font-size: medium;
+            
+        
+        }
+        h3{
+            margin-bottom: 20px; 
+            font-size: xx-large;
+        }
+        </style>
+</head>
+<body>
+    <div class="fundo">
+        <div class="subfundo"></div>
+    
+        <div class="subtitulo">
+        </div>
+        <div class="fundobotoes">
+        
+        <p id="dados1"></p>
+        <table>
+            <tr>
+                <div class="subtitulo"> 
+                    <h3>Tipos de teste da VAM</h3>
+                </div>
+            </tr>
+            <tr>
+                <td><button class="botao" id="btnCorrida_1.600m_jovens_brasileiros">Corrida 1.600 metros - Jovens Brasileiros</button></td>
+            </tr>
+            <tr>
+                <td><button class="botao" id="btnvelocidade_de_3000m">Velocidade de 3.000 metros</button></td>
+            </tr>
+            <tr>
+                <td><button class="botao" id="btnV5:corrida_de_5min">V5: Corrida de 5 minutos</button></td>
+            </tr>
+            <tr>
+                <td><button class="botao" id="btnmet5">Método competição 5.000 m (Tokmakidis)</button></td>
+            </tr>
+            <tr>
+                <td><button class="botao" id="btnmet10">Método competição 10.000 m (Tokmakidis)</button></td>
+            </tr>
+            <tr>
+                <td><button class="botao" id="btnmet42">Método competição 42.000 m (Tokmakidis)</button></td>
+            </tr>
+            <tr>
+        </table>
+       </div>
+    </div>
+        <script>
+            // Redirecionamento dos botoes clicados
+            document.getElementById("btnCorrida_1.600m_jovens_brasileiros").addEventListener("click", function() {
+                window.location.href = "file:///C:/Users/pichau/Desktop/Calculadora_do_Treinador/Corrida_1.600m_jovens_brasileiros.html";
+            });
+             document.getElementById("btnvelocidade_de_3000m").addEventListener("click", function() {
+                window.location.href = "file:///C:/Users/pichau/Desktop/Calculadora_do_Treinador/velocidade_de_3000m.html";
+            });
+            document.getElementById("btnV5:corrida_de_5min").addEventListener("click", function() {
+                window.location.href = "file:///C:/Users/pichau/Desktop/Calculadora_do_Treinador/V5-corrida_de_5min.html";
+            });
+            document.getElementById("btnmet5").addEventListener("click", function() {
+                window.location.href = "file:///C:/Users/pichau/Desktop/Calculadora_do_Treinador/met5.html";
+            });
+             document.getElementById("btnmet10").addEventListener("click", function() {
+                window.location.href = "file:///C:/Users/pichau/Desktop/Calculadora_do_Treinador/met10.html";
+            });
+            document.getElementById("btnmet42").addEventListener("click", function() {
+                window.location.href = "file:///C:/Users/pichau/Desktop/Calculadora_do_Treinador/met42.html";
+            });
+
+        </script>
+</body>
+</html>
