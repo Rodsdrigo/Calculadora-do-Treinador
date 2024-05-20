@@ -29,7 +29,7 @@
 
         .conteudo {
             position: absolute;
-            top: 78%;
+            top: 62%;
             left: 50%;
             transform: translate(-50%, -50%);
             color: white;
@@ -191,51 +191,55 @@
                 <table id="resultadoTable" style="display: none;">
                     <tr>
                         <th rowspan="2">Aquecimento</th>
-                        <th>Pace</th>
-                        <th>Velocidade</th>
+                        <th>Distância</th>
                         <th>Tempo</th>
+                        <th>Velocidade</th>
+                        <th>Pace</th>
                     </tr>
                     <tr>
-                        <td id="paceFormatado_aquecimento" class="resultado"></td>
-                        <td id="velocidade_aquecimento" class="resultado"></td>
+                        <td class="distancia-aquecimento"></td>
                         <td id="tempoFormatado_aquecimento" class="resultado"></td>
+                        <td id="velocidade_aquecimento" class="resultado"></td>
+                        <td id="paceFormatado_aquecimento" class="resultado"></td>
                     </tr>
                 </table>
                 <table id="resultadoTable1" style="display: none;">
                     <tr>
                         <th>Intensidade</th>
-                        <th>Pace</th>
-                        <th>Velocidade</th>
                         <th>Distância</th>
                         <th>Tempo</th>
+                        <th>Velocidade</th>
+                        <th>Pace</th>
                     </tr>
                     <tr>
                         <td>Mínima</td>
-                        <td id="paceFormatado_intensidade_minima" class="resultado"></td>
-                        <td id="velocidade_intensidade_minima" class="resultado"></td>
                         <td class="distancia-intensidade-minima"></td>
                         <td id="tempoFormatado_intensidade_minima" class="resultado"></td>
+                        <td id="velocidade_intensidade_minima" class="resultado"></td>
+                        <td id="paceFormatado_intensidade_minima" class="resultado"></td>
                     </tr>
                     <tr>
                         <td>Máxima</td>
-                        <td id="paceFormatado_intensidade_maxima" class="resultado"></td>
-                        <td id="velocidade_intensidade_maxima" class="resultado"></td>
                         <td class="distancia-intensidade-maxima"></td>
                         <td id="tempoFormatado_intensidade_maxima" class="resultado"></td>
+                        <td id="velocidade_intensidade_maxima" class="resultado"></td>
+                        <td id="paceFormatado_intensidade_maxima" class="resultado"></td>
                     </tr>
 
                 </table>
                 <table id="resultadoTable2" style="display: none;">
                     <tr>
                         <th rowspan="2">Resfriamento</th>
-                        <th>Pace</th>
-                        <th>Velocidade</th>
+                        <th>Distância</th>
                         <th>Tempo</th>
+                        <th>Velocidade</th>
+                        <th>Pace</th>
                     </tr>
                     <tr>
-                        <td id="paceFormatado_resfriamento" class="resultado"></td>
-                        <td id="velocidade_resfriamento" class="resultado"></td>
+                        <td class="distancia-resfriamento"></td>
                         <td id="tempoFormatado_resfriamento" class="resultado"></td>
+                        <td id="velocidade_resfriamento" class="resultado"></td>
+                        <td id="paceFormatado_resfriamento" class="resultado"></td>
                     </tr>
                 </table>
                 <table id="resultadoTable3" style="display: none;">
@@ -253,6 +257,7 @@
     </div>
 
     <script>
+
         document.getElementById('formulario').addEventListener('input', function() {
             var vam = document.getElementById('VAM').value;
             var distancia_aquecimento = document.getElementById('distancia_aquecimento').value;
@@ -391,6 +396,14 @@
             });
             document.querySelectorAll('.distancia-intensidade-maxima').forEach(function(element) {
             element.textContent = distancia_intensidade_maxima.toFixed(2) + ' Km';
+            
+            });
+            document.querySelectorAll('.distancia-aquecimento').forEach(function(element) {
+            element.textContent = distancia_aquecimento.toFixed(2) + ' Km';
+            
+            });
+            document.querySelectorAll('.distancia-resfriamento').forEach(function(element) {
+            element.textContent = distancia_resfriamento.toFixed(2) + ' Km';
             
             });
 
