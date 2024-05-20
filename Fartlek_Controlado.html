@@ -41,6 +41,7 @@
             background-color: rgba(0, 0, 0, 0.5);
             padding: 20px;
             border-radius: 10px;
+          
            
         }
 
@@ -99,6 +100,34 @@
             background-color: rgba(0, 0, 0, 0.5);
             color: white;
         }
+
+
+        .form-container {
+        display: flex;
+        gap: 20px; /* Espaçamento entre os grupos de formulário */
+        
+        }
+    .form-group {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin-bottom: 2px; /* Espaçamento inferior (opcional) */
+        width: 200px;
+        margin-top: 10px;
+
+        
+    }
+    .form-group label {
+        margin-right: 5px; /* Espaçamento entre o label e o input */
+    }
+    .form-group input,
+    .form-group textarea {
+        margin-top: 0px; /* Reduz o espaçamento acima do input */}
+    .subgrupo {
+
+    font-size: larger;
+    
+    }
     </style>
 </head>
 <body>
@@ -109,33 +138,52 @@
                 <h2>Fartlek Controlado</h2>
                 <form id="formulario" class="formulario">
                     
-                    <label for="VAM">VAM do atleta em Km/h:</label><br>
+                    <label class="subgrupo" for="VAM">VAM do atleta em Km/h:</label><br>
                     <input type="number" id="VAM" name="VAM" min="0" required><br><br>
-
-                    <label for="distancia_aquecimento">Distância do aquecimento em Km:</label><br>
+                    <label class="subgrupo" for="1">Aquecimento</label>
+                    <div class="form-container">
+                     <div class="form-group">
+                    <label for="distancia_aquecimento">Distância em Km:</label><br>
                     <input type="number" id="distancia_aquecimento" name="distancia_aquecimento" min="0" required><br><br>
-
-                    <label for="VAM_aquecimento">Percentual VAM aquecimento:</label><br>
+                    </div>
+                    <div class=" form-group">
+                    <label for="VAM_aquecimento">Percentual VAM:</label><br>
                     <input type="number" id="VAM_aquecimento" name="VAM_aquecimento" min="0" max="200" required><br><br>
-
-                    <label for="distancia_intensidade_minima">Distância da menor intensidade</label><br>
+                    </div>
+                    </div>
+                    <label class="subgrupo" for="1">Menor Intensidade</label>
+                    <div class="form-container">
+                    <div class="form-group">
+                    <label for="distancia_intensidade_minima">Distância em Km</label><br>
                     <input type="number" id="distancia_intensidade_minima" name="distancia_intensidade_minima" min="0" required><br><br>
-
-                    <label for="VAM_intensidade_minima">Percentual VAM da menor intensidade:</label><br>
+                    </div>
+                    <div class="form-group">
+                    <label for="VAM_intensidade_minima">Percentual VAM:</label><br>
                     <input type="number" id="VAM_intensidade_minima" name="VAM_intensidade_minima" min="0" max="200" required><br><br>
-
-                    <label for="distancia_intensidade_maxima">Distância da menor intensidade</label><br>
+                    </div>
+                    </div>
+                    <label class="subgrupo" for="1">Maior Intensidade</label>
+                    <div class="form-container">
+                    <div class="form-group">
+                    <label for="distancia_intensidade_maxima">Distância em Km</label><br>
                     <input type="number" id="distancia_intensidade_maxima" name="distancia_intensidade_maxima" min="0" required><br><br>
-
-                    <label for="VAM_intensidade_maxima">Percentual VAM da menor intensidade:</label><br>
+                    </div>
+                    <div class="form-group">
+                    <label for="VAM_intensidade_maxima">Percentual VAM:</label><br>
                     <input type="number" id="VAM_intensidade_maxima" name="VAM_intensidade_maxima" min="0" max="200" required><br><br>
-
-                    <label for="distancia_resfriamento">Distância do resfriamento:</label><br>
+                    </div>
+                    </div>
+                    <label class="subgrupo" for="1">Resfriamento</label>
+                    <div class="form-container">
+                    <div class="form-group">
+                    <label for="distancia_resfriamento">Distância em Km:</label><br>
                     <input type="number" id="distancia_resfriamento" name="distancia_resfriamento" min="0" required><br><br>
-
-                    <label for="VAM_resfriamento">Percentual VAM resfriamento:</label><br>
+                    </div>
+                    <div class="form-group">
+                    <label for="VAM_resfriamento">Percentual VAM:</label><br>
                     <input type="number" id="VAM_resfriamento" name="VAM_resfriamento" min="0" max="200" required><br><br>
-                    
+                    </div>
+                    </div>
                     <input type="submit" value="Calcular" disabled>
                 </form>
 
