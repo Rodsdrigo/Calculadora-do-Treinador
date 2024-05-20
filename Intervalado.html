@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Intervalado</title>
     <style>
-        * {
+   * {
             margin: 0;
             padding: 0;
         }
@@ -29,9 +29,9 @@
 
         .conteudo {
             position: absolute;
-            top: 80%;
+            margin-top: 40px;
             left: 50%;
-            transform: translate(-50%, -50%);
+            transform: translate(-50%);
             color: white;
             text-align: center;
             font-family: Arial, sans-serif;
@@ -41,6 +41,7 @@
             background-color: rgba(0, 0, 0, 0.5);
             padding: 20px;
             border-radius: 10px;
+          
            
         }
 
@@ -48,8 +49,8 @@
         input[type="submit"] {
             width: 100%;
             padding: 8px;
-            margin-top: 8px;
-            margin-bottom: 8px;
+            margin-top: 12px;
+            margin-bottom: 12px;
             border: none;
             border-radius: 5px;
             background-color: #f0f0f0;
@@ -99,6 +100,34 @@
             background-color: rgba(0, 0, 0, 0.5);
             color: white;
         }
+
+
+        .form-container {
+        display: flex;
+        gap: 20px; /* Espaçamento entre os grupos de formulário */
+        
+        }
+    .form-group {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin-bottom: 6px; /* Espaçamento inferior (opcional) */
+        width: 200px;
+        margin-top: 10px;
+
+        
+    }
+    .form-group label {
+        margin-right: 5px; /* Espaçamento entre o label e o input */
+    }
+    .form-group input,
+    .form-group textarea {
+        margin-top: 0px; /* Reduz o espaçamento acima do input */}
+    .subgrupo {
+
+    font-size: larger;
+    
+    }  
     </style>
 </head>
 <body>
@@ -109,39 +138,63 @@
                 <h2>Intervalado</h2>
                 <form id="formulario" class="formulario">
                     
-                    <label for="VAM">VAM do atleta em Km/h:</label><br>
+                    <label class="subgrupo" for="VAM">VAM do atleta em Km/h:</label><br>
                     <input type="number" id="VAM" name="VAM" min="0" required><br><br>
-
-                    <label for="serie">Número de séries:</label><br>
+                    <label class="subgrupo" for="1">Séries</label>
+                    <div class="form-container">
+                    <div class="form-group">
+                    <label for="serie">Quantidade:</label><br>
                     <input type="number" id="serie" name="serie" min="0" required><br><br>
-
-                    <label for="descanso_serie">Tempo de descanso da série em s:</label><br>
+                    </div>
+                    <div class="form-group">
+                    <label for="descanso_serie">Tempo de descanso em s:</label><br>
                     <input type="number" id="descanso_serie" name="descanso_serie" min="0" required><br><br>
-
-                    <label for="repeticao">Número de repetições:</label><br>
+                    </div>
+                    </div>
+                    <label class="subgrupo" for="1">Repetições</label>
+                    <div class="form-container">
+                    <div class="form-group">
+                    <label for="repeticao">Quantidade:</label><br>
                     <input type="number" id="repeticao" name="repeticao" min="0" required><br><br>
-                    
-                    <label for="descanso_repeticao">Tempo de descanso da repetição em s:</label><br>
+                    </div>
+                    <div class="form-group">
+                    <label for="descanso_repeticao">Tempo de descanso em s:</label><br>
                     <input type="number" id="descanso_repeticao" name="descanso_repeticao" min="0" required><br><br>
-
-                    <label for="distancia_aquecimento">Distância do aquecimento em Km:</label><br>
+                    </div>
+                    </div>
+                    <label class="subgrupo" for="1">Aquecimento</label>
+                    <div class="form-container">
+                    <div class="form-group">
+                    <label for="distancia_aquecimento">Distância em Km:</label><br>
                     <input type="number" id="distancia_aquecimento" name="distancia_aquecimento" min="0" required><br><br>
-
-                    <label for="VAM_aquecimento">Percentual VAM aquecimento:</label><br>
+                    </div>
+                    <div class="form-group">
+                    <label for="VAM_aquecimento">Percentual VAM:</label><br>
                     <input type="number" id="VAM_aquecimento" name="VAM_aquecimento" min="0" max="200" required><br><br>
-
-                    <label for="distancia_rampa">Distância do intervalado em m:</label><br>
+                    </div>
+                    </div>
+                    <label class="subgrupo" for="1">Intervalado</label>
+                    <div class="form-container">
+                    <div class="form-group">
+                    <label for="distancia_rampa">Distância em m:</label><br>
                     <input type="number" id="distancia_rampa" name="distancia_rampa" min="0" required><br><br>
-
-                    <label for="VAM_subida">Percentual VAM intervalado:</label><br>
+                    </div>
+                    <div class="form-group">
+                    <label for="VAM_subida">Percentual VAM:</label><br>
                     <input type="number" id="VAM_subida" name="VAM_subida" min="0" max="200" required><br><br>
-
-                    <label for="distancia_resfriamento">Distância do resfriamento:</label><br>
+                    </div>
+                    </div>
+                    <label class="subgrupo" for="1">Resfriamento</label>
+                    <div class="form-container">
+                    <div class="form-group">
+                    <label for="distancia_resfriamento">Distância em Km:</label><br>
                     <input type="number" id="distancia_resfriamento" name="distancia_resfriamento" min="0" required><br><br>
-
-                    <label for="VAM_resfriamento">Percentual VAM resfriamento:</label><br>
+                    </div>
+                    <div class="form-group">
+                    <label for="VAM_resfriamento">Percentual VAM:</label><br>
                     <input type="number" id="VAM_resfriamento" name="VAM_resfriamento" min="0" max="200" required><br><br>
-                    
+                    </div>
+                    </div>
                     <input type="submit" value="Calcular" disabled>
                 </form>
 
@@ -149,14 +202,16 @@
                 <table id="resultadoTable" style="display: none;">
                     <tr>
                         <th rowspan="2">Aquecimento</th>
-                        <th>Pace</th>
-                        <th>Velocidade</th>
+                        <th>Distância</th>
                         <th>Tempo</th>
+                        <th>Velocidade</th>
+                        <th>Pace</th>
                     </tr>
                     <tr>
-                        <td id="paceFormatado_aquecimento" class="resultado"></td>
-                        <td id="velocidade_aquecimento" class="resultado"></td>
+                        <td class="distancia-aquecimento"></td>
                         <td id="tempoFormatado_aquecimento" class="resultado"></td>
+                        <td id="velocidade_aquecimento" class="resultado"></td>
+                        <td id="paceFormatado_aquecimento" class="resultado"></td>
                     </tr>
                 </table>
                 <table id="resultadoTable1" style="display: none;">
@@ -165,37 +220,42 @@
                         <th>Descanso Série</th>
                         <th>Repetições</th>
                         <th>Tipo</th>
-                        <th>Pace</th>
-                        <th>Velocidade</th>
+                        <th>Distância</th>
                         <th>Tempo</th>
+                        <th>Velocidade</th>
+                        <th>Pace</th>
                     </tr>
                     <tr>
                         <td class="resultado serie-value" rowspan="3"></td>
                         <td class="resultado descanso-serie-value" rowspan="3"></td>
                         <td class="resultado repeticao-value" rowspan="3"></td>
-                        <td>Subida</td>
-                        <td id="paceFormatado_subida" class="resultado"></td>
-                        <td id="velocidade_subida" class="resultado"></td>
+                        <td>Tiro</td>
+                        <td class="distancia-subida"></td>
                         <td id="tempoFormatado_subida" class="resultado"></td>
+                        <td id="velocidade_subida" class="resultado"></td>
+                        <td id="paceFormatado_subida" class="resultado"></td>
                     </tr>
                     <tr>
                         <td>Descanso</td>
-                        <td>00:00</td>
-                        <td>0.00 Km/h</td>
+                        <td>0.00 km</td>
                         <td class="resultado descanso-repeticao-value"></td>
+                        <td>0.00 Km/h</td>
+                        <td>00:00</td>
                     </tr>
                 </table>
                 <table id="resultadoTable2" style="display: none;">
                     <tr>
                         <th rowspan="2">Resfriamento</th>
-                        <th>Pace</th>
-                        <th>Velocidade</th>
+                        <th>Distância</th>
                         <th>Tempo</th>
+                        <th>Velocidade</th>
+                        <th>Pace</th>
                     </tr>
                     <tr>
-                        <td id="paceFormatado_resfriamento" class="resultado"></td>
-                        <td id="velocidade_resfriamento" class="resultado"></td>
+                        <td class="distancia-resfriamento"></td>
                         <td id="tempoFormatado_resfriamento" class="resultado"></td>
+                        <td id="velocidade_resfriamento" class="resultado"></td>
+                        <td id="paceFormatado_resfriamento" class="resultado"></td>
                     </tr>
                 </table>
                 <table id="resultadoTable3" style="display: none;">
@@ -326,15 +386,15 @@
             document.getElementById('resultadoTable3').style.display = 'block';
 
             document.getElementById('paceFormatado_aquecimento').textContent = paceFormatado_aquecimento;
-            document.getElementById('velocidade_aquecimento').textContent = velocidade_aquecimento.toFixed(2) + ' Km/h';
+            document.getElementById('velocidade_aquecimento').textContent = velocidade_aquecimento.toFixed(2) + ' km/h';
             document.getElementById('tempoFormatado_aquecimento').textContent = tempoFormatado_aquecimento;
 
             document.getElementById('paceFormatado_subida').textContent = paceFormatado_subida;
-            document.getElementById('velocidade_subida').textContent = velocidade_subida.toFixed(2) + ' Km/h';
+            document.getElementById('velocidade_subida').textContent = velocidade_subida.toFixed(2) + ' km/h';
             document.getElementById('tempoFormatado_subida').textContent = tempoFormatado_subida;
 
             document.getElementById('paceFormatado_resfriamento').textContent = paceFormatado_resfriamento;
-            document.getElementById('velocidade_resfriamento').textContent = velocidade_resfriamento.toFixed(2) + ' Km/h';
+            document.getElementById('velocidade_resfriamento').textContent = velocidade_resfriamento.toFixed(2) + ' km/h';
             document.getElementById('tempoFormatado_resfriamento').textContent = tempoFormatado_resfriamento;
 
             document.querySelectorAll('.serie-value').forEach(function(element) {
@@ -359,6 +419,18 @@
             });
             document.querySelectorAll('.distancia-total-value').forEach(function(element) {
             element.textContent = distancia_total;
+            
+            });
+            document.querySelectorAll('.distancia-aquecimento').forEach(function(element) {
+            element.textContent = distancia_aquecimento.toFixed(2) + ' km';
+            
+            });
+            document.querySelectorAll('.distancia-resfriamento').forEach(function(element) {
+            element.textContent = distancia_resfriamento.toFixed(2) + ' km';
+            
+            });
+            document.querySelectorAll('.distancia-subida').forEach(function(element) {
+            element.textContent = distancia_subida.toFixed(2) + ' km';
             
             });
             
