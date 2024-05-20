@@ -41,6 +41,7 @@
             background-color: rgba(0, 0, 0, 0.5);
             padding: 20px;
             border-radius: 10px;
+          
            
         }
 
@@ -71,8 +72,6 @@
         #tempoResultado,
         .resultado {
             margin-top: 20px;
-            
-
         }
         h2 {
             margin-bottom: 20px; /* Espaçamento entre C. Constante e o próximo elemento */
@@ -95,16 +94,40 @@
             border: 1px solid white;
             padding: 8px;
             text-align: center;
-            
         }
 
         th {
             background-color: rgba(0, 0, 0, 0.5);
             color: white;
         }
+
+
+        .form-container {
+        display: flex;
+        gap: 20px; /* Espaçamento entre os grupos de formulário */
         
+        }
+    .form-group {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin-bottom: 2px; /* Espaçamento inferior (opcional) */
+        width: 200px;
+        margin-top: 10px;
 
         
+    }
+    .form-group label {
+        margin-right: 5px; /* Espaçamento entre o label e o input */
+    }
+    .form-group input,
+    .form-group textarea {
+        margin-top: 0px; /* Reduz o espaçamento acima do input */}
+    .subgrupo {
+
+    font-size: larger;
+    
+    }  
     </style>
 </head>
 <body>
@@ -117,55 +140,69 @@
                     
                     <label for="VAM">VAM do atleta em Km/h:</label><br>
                     <input type="number" id="VAM" name="VAM" min="0" required><br><br>
-
-                    <label for="distancia1">Distância intensidade 1 em Km:</label><br>
+                    <label class="subgrupo" for="1">Intensidade 1</label>
+                    <div class="form-container">
+                    <div class="form-group">
+                    <label for="distancia1">Distância em Km:</label><br>
                     <input type="number" id="distancia1" name="distancia1" min="0" required><br><br>
-
-                    <label for="%VAM1">Percentual da VAM intensidade 1:</label><br>
+                    </div>
+                    <div class="form-group">
+                    <label for="%VAM1">Percentual da VAM:</label><br>
                     <input type="number" id="%VAM1" name="%VAM1" min="0" max="100" required><br><br>
-
-                    <label for="distancia2">Distância intensidade 2 em Km:</label><br>
+                    </div>
+                    </div>
+                    <label class="subgrupo" for="1">Intensidade 2</label>
+                    <div class="form-container">
+                    <div class="form-group">
+                    <label for="distancia2">Distância em Km:</label><br>
                     <input type="number" id="distancia2" name="distancia2" min="0" required><br><br>
-                    
-                    <label for="%VAM2">Percentual da VAM intensidade 2:</label><br>
+                    </div>
+                    <div class=" form-group">                                      
+                    <label for="%VAM2">Percentual da VAM:</label><br>
                     <input type="number" id="%VAM2" name="%VAM2" min="0" max="100" required><br><br>
-
-                    <label for="distancia3">Distância intensidade 3 em Km:</label><br>
+                    </div>
+                    </div>
+                    <label class="subgrupo" for="1">Intensidade 1</label>
+                    <div class="form-container">
+                    <div class="form-group">
+                    <label for="distancia3">Distância em Km:</label><br>
                     <input type="number" id="distancia3" name="distancia3" min="0" required><br><br>
-
-                    <label for="%VAM3">Percentual da VAM intensidade 3:</label><br>
+                    </div>
+                    <div class=" form-group">
+                    <label for="%VAM3">Percentual da VAM:</label><br>
                     <input type="number" id="%VAM3" name="%VAM3" min="0" max="100" required><br><br>
-                    
+                    </div>
+                    </div>
                     <input type="submit" value="Calcular" disabled>
                 </form>
 
                 <!-- Tabela para exibir os resultados -->
                 <table id="resultadoTable" style="display: none;">
                     <tr>
-                        <th>Intensidade</th>
-                        <th>Pace</th>
-                        <th>Velocidade</th>
+                        <th>Distância</th>
                         <th>Tempo</th>
+                        <th>Velocidade</th>
+                        <th>Pace</th>
                         <th>Tempo total</th>
                     </tr>
                     <tr>
-                        <td>Intensidade 1</td>
-                        <td id="paceResultado1" class="resultado"></td>
-                        <td id="velocidadeResultado1" class="resultado"></td>
+                        <td class="distancia-intensidade-1"></td>
                         <td id="tempoResultado1" class="resultado"></td>
+                        <td id="velocidadeResultado1" class="resultado"></td>
+                        <td id="paceResultado1" class="resultado"></td>
                         <td rowspan="3" id="tempoResultado" class="resultado"></td>
                     </tr>
                     <tr>
-                        <td>Intensidade 2</td>
-                        <td id="paceResultado2" class="resultado"></td>
-                        <td id="velocidadeResultado2" class="resultado"></td>
+                        <td class="distancia-intensidade-2"></td>
                         <td id="tempoResultado2" class="resultado"></td>
+                        <td id="velocidadeResultado2" class="resultado"></td>
+                        <td id="paceResultado2" class="resultado"></td>
                     </tr>
                     <tr>
-                        <td>Intensidade 3</td>
-                        <td id="paceResultado3" class="resultado"></td>
-                        <td id="velocidadeResultado3" class="resultado"></td>
+                        <td class="distancia-intensidade-3"></td>
                         <td id="tempoResultado3" class="resultado"></td>
+                        <td id="velocidadeResultado3" class="resultado"></td>
+                        <td id="paceResultado3" class="resultado"></td>
                     </tr>
                 </table>
             </div>
@@ -275,6 +312,17 @@
             document.getElementById('paceResultado3').innerHTML = paceFormatado3;
             document.getElementById('velocidadeResultado3').innerHTML = velocidade3.toFixed(2) + ' km/h';
             document.getElementById('tempoResultado3').innerHTML = tempoFormatado3;
+
+            document.querySelectorAll('.distancia-intensidade-1').forEach(function(element) {
+            element.textContent = distancia1.toFixed(2) + ' Km';});
+
+            document.querySelectorAll('.distancia-intensidade-2').forEach(function(element) {
+            element.textContent = distancia2.toFixed(2) + ' Km';});
+
+            document.querySelectorAll('.distancia-intensidade-3').forEach(function(element) {
+            element.textContent = distancia3.toFixed(2) + ' Km';});
+
+
 
             // Exibe a tabela de resultados e esconde o formulário
             document.getElementById('formulario').style.display = 'none';
