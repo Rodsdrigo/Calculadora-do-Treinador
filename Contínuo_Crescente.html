@@ -183,13 +183,15 @@
                         <th>Tempo</th>
                         <th>Velocidade</th>
                         <th>Pace</th>
+                        <th>Distância Total</th>
                         <th>Tempo total</th>
                     </tr>
                     <tr>
                         <td class="distancia-intensidade-1"></td>
                         <td id="tempoResultado1" class="resultado"></td>
                         <td id="velocidadeResultado1" class="resultado"></td>
-                        <td id="paceResultado1" class="resultado"></td>
+                        <td id="paceResultado1" class="resultado"></td> 
+                        <td rowspan="3" id="distanciaTotal" class="resultado"></td>
                         <td rowspan="3" id="tempoResultado" class="resultado"></td>
                     </tr>
                     <tr>
@@ -301,6 +303,8 @@
             // Formata o tempo3 para o formato "hh:mm:ss"
             var tempoFormatado3 = ('0' + tempoHoras3).slice(-2) + ':' + ('0' + tempoMinutos3).slice(-2) + ':' + ('0' + tempoSegundos3).slice(-2);
 
+            var distanciaTotal=distancia1+distancia2+distancia3;
+
             // Exibe os resultados na página
             document.getElementById('tempoResultado').innerHTML = tempoFormatado;
             document.getElementById('paceResultado1').innerHTML = paceFormatado1;
@@ -312,15 +316,16 @@
             document.getElementById('paceResultado3').innerHTML = paceFormatado3;
             document.getElementById('velocidadeResultado3').innerHTML = velocidade3.toFixed(2) + ' km/h';
             document.getElementById('tempoResultado3').innerHTML = tempoFormatado3;
+            document.getElementById('distanciaTotal').innerHTML = distanciaTotal.toFixed(2) + ' km';
 
             document.querySelectorAll('.distancia-intensidade-1').forEach(function(element) {
-            element.textContent = distancia1.toFixed(2) + ' Km';});
+            element.textContent = distancia1.toFixed(2) + ' km';});
 
             document.querySelectorAll('.distancia-intensidade-2').forEach(function(element) {
-            element.textContent = distancia2.toFixed(2) + ' Km';});
+            element.textContent = distancia2.toFixed(2) + ' km';});
 
             document.querySelectorAll('.distancia-intensidade-3').forEach(function(element) {
-            element.textContent = distancia3.toFixed(2) + ' Km';});
+            element.textContent = distancia3.toFixed(2) + ' km';});
 
 
 
