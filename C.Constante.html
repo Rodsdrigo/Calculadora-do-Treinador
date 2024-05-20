@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>C. Constante</title>
     <style>
-        * {
+              * {
             margin: 0;
             padding: 0;
         }
@@ -20,7 +20,7 @@
             position: relative;
         }
 
-        .subfundo {
+        .subfundo{
             background-image: url(Blog_do_treinador2.jpg);
             height: 16%;
             background-repeat: no-repeat;
@@ -30,9 +30,9 @@
 
         .conteudo {
             position: absolute;
-            top: 50%;
+            margin-top: 40px;
             left: 50%;
-            transform: translate(-50%, -50%);
+            transform: translate(-50%);
             color: white;
             text-align: center;
             font-family: Arial, sans-serif;
@@ -42,15 +42,16 @@
             background-color: rgba(0, 0, 0, 0.5);
             padding: 20px;
             border-radius: 10px;
-
+          
+           
         }
 
         input[type="number"],
         input[type="submit"] {
             width: 100%;
             padding: 8px;
-            margin-top: 8px;
-            margin-bottom: 8px;
+            margin-top: 12px;
+            margin-bottom: 12px;
             border: none;
             border-radius: 5px;
             background-color: #f0f0f0;
@@ -70,15 +71,15 @@
         }
 
         #tempoResultado,
-        #paceResultado,
-        #velocidadeResultado {
+        .resultado {
             margin-top: 20px;
         }
-
         h2 {
-            margin-bottom: 20px;
-            /* Espaçamento entre C. Constante e o próximo elemento */
+            margin-bottom: 20px; /* Espaçamento entre C. Constante e o próximo elemento */
             font-size: xx-large;
+        }
+        body{
+            background-color: rgb(175, 27, 27);
         }
 
         table {
@@ -97,11 +98,37 @@
         }
 
         th {
-            background-color:rgba(0, 0, 0, 0.5);
+            background-color: rgba(0, 0, 0, 0.5);
             color: white;
         }
-        td:nth-child(2) {
-        width: 150px;}
+
+
+        .form-container {
+        display: flex;
+        gap: 20px; /* Espaçamento entre os grupos de formulário */
+        
+        }
+    .form-group {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin-bottom: 6px; /* Espaçamento inferior (opcional) */
+        width: 200px;
+        margin-top: 10px;
+
+        
+    }
+    .form-group label {
+        margin-right: 5px; /* Espaçamento entre o label e o input */
+    }
+    .form-group input,
+    .form-group textarea {
+        margin-top: 0px; /* Reduz o espaçamento acima do input */}
+    .subgrupo {
+
+    font-size: larger;
+    
+    } 
     </style>
 </head>
 
